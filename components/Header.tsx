@@ -3,13 +3,9 @@ import { ClerkLoaded, SignedIn, SignInButton, UserButton, useUser } from '@clerk
 import { PackageIcon, TrolleyIcon } from '@sanity/icons';
 import Form from 'next/form';
 import Link from 'next/link';
-import { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
 
-interface HeaderProps {
-	// Prop types here
-}
-
-const Header: FC<HeaderProps> = ({}): ReactElement => {
+const Header = ({}): ReactElement => {
 	const { user } = useUser();
 	const createClerkPasskey = async () => {
 		try {
