@@ -1,70 +1,59 @@
-import { TrendUpwardIcon } from "@sanity/icons";
+import { TagIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const salesType = defineType({
-  name: "sales",
-  title: "Sales",
+  name: "sale",
+  title: "Sale",
   type: "document",
-  icon: TrendUpwardIcon,
+  icon: TagIcon,
   fields: [
     defineField({
-      name: "totalSales",
-      title: "Total Sales",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "period",
-      title: "Period",
+      name: "title",
       type: "string",
-      options: {
-        list: [
-          { title: "Daily", value: "daily" },
-          { title: "Weekly", value: "weekly" },
-          { title: "Monthly", value: "monthly" },
-          { title: "Yearly", value: "yearly" },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
+      title: "Sale Title",
     }),
     defineField({
-      name: "date",
-      title: "Date",
+      name: "description",
+      type: "string",
+      title: "Sale Description",
+    }),
+    defineField({
+      name: "discountAmount",
+      type: "number",
+      title: "Discount Amount",
+      description: "Amount off in percentage or fixed amount",
+    }),
+    defineField({
+      name: "validFrom",
       type: "datetime",
-      validation: (Rule) => Rule.required(),
+      title: "Valid From",
     }),
     defineField({
-      name: "ordersCount",
-      title: "Number of Orders",
-      type: "number",
-      validation: (Rule) => Rule.required(),
+      name: "validUntil",
+      type: "datetime",
+      title: "Valid Until",
     }),
     defineField({
-      name: "averageOrderValue",
-      title: "Average Order Value",
-      type: "number",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "currency",
-      title: "Currency",
-      type: "string",
-      validation: (Rule) => Rule.required(),
+      name: "isActive",
+      type: "boolean",
+      title: "Is Active",
+      description: "Toggle to enable or disable the sale",
+      initialValue: true,
     }),
   ],
   preview: {
     select: {
-      sales: "totalSales",
-      period: "period",
-      date: "date",
-      currency: "currency",
+      title: "title",
+      discountAmount: "discountAmount",
+      couponCode: "couponCode",
+      isActive: "isActive",
     },
     prepare(selection) {
-      const { sales, period, date, currency } = selection;
+      const { title, discountAmount, couponCode, isActive } = selection;
+      const status = isActive ? "Active" : "Inactive";
       return {
-        title: `${period.charAt(0).toUpperCase() + period.slice(1)} Sales: ${currency}${sales}`,
-        subtitle: new Date(date).toLocaleDateString(),
-        media: TrendUpwardIcon,
+        title: title,
+        subtitle: `${discountAmount}% off - Code ${couponCode} - ${status}`,
       };
     },
   },
