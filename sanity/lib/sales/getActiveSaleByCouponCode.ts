@@ -3,13 +3,13 @@ import { sanityFetch } from "../live";
 import { CouponCode } from "./couponCodes";
 
 export const getActiveSaleByCouponCode = async (couponCode: CouponCode) => {
-  const ACTIVE_SALE_BY_COUPON__QUERY = defineQuery(`
-        *[_type == "sale" && isActive == true && couponCode == "${couponCode}"] | order(validFrom desc)[0]
+  const ACTIVE_SALE_BY_COUPON_QUERY = defineQuery(`
+        *[_type == "sale" && isActive == true && couponCode == $couponCode] | order(validFrom desc)[0]
     `);
 
   try {
     const activeSale = await sanityFetch({
-      query: ACTIVE_SALE_BY_COUPON__QUERY,
+      query: ACTIVE_SALE_BY_COUPON_QUERY,
       params: {
         couponCode,
       },

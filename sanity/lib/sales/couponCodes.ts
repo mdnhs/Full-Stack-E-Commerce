@@ -5,4 +5,4 @@ export const COUPON_CODE = {
   BFRIDAY2024: "BFRIDAY2024",
 } as const;
 
-export type CouponCode = [keyof typeof COUPON_CODE];
+export type CouponCode = (typeof COUPON_CODE)[keyof typeof COUPON_CODE];
