@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="bg-gray-100">
       <BlackFridayBanner />
-      <div className="flex flex-col items-center justify-start min-h-screen bg-gray-100 p-4 container mx-auto ">
+      <div className="flex flex-col items-center justify-start w-full min-h-screen bg-gray-100 p-4 container mx-auto ">
         <ProductsView products={products} />
       </div>
     </div>

@@ -15,18 +15,17 @@ const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
   return (
     <Link
       href={`/product/${product.slug?.current}`}
-      className={`group flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 ease-in-out overflow-hidden ${
+      className={`group flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md min-w-72 transition-all duration-300  overflow-hidden ${
         isOutOfStock ? "opacity-50" : ""
       }`}
     >
       <div className="relative aspect-square size-full overflow-hidden">
         {product.image && (
           <Image
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02] "
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             src={imageUrl(product.image).url()}
             alt={product.name || "Product Image"}
             priority
-            quality={80}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
