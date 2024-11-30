@@ -1,38 +1,51 @@
 # Full-Stack E-Commerce Platform
 
-A modern, feature-rich e-commerce platform built with Next.js 15, Sanity CMS, and TypeScript. This project combines the power of server-side rendering with a headless CMS to deliver a fast, scalable, and maintainable e-commerce solution.
+A modern, high-performance e-commerce platform built with Next.js 15, Sanity CMS, and TypeScript. This project delivers a seamless shopping experience with server-side rendering, dynamic routing, and a headless CMS architecture.
 
-## Features
+## ✨ Features
 
 - **Modern Tech Stack**: Built with Next.js 15, TypeScript, and Tailwind CSS
 - **Headless CMS**: Powered by Sanity.io for flexible content management
 - **Authentication**: Secure user authentication with Clerk
-- **Responsive Design**: Mobile-first approach with a modern UI
-- **Performance Optimized**: Leverages Next.js features for optimal loading speeds
-- **Type-Safe**: Full TypeScript support with generated types for Sanity content
+- **Dynamic Routing**: SEO-friendly URLs for products and categories
+- **Responsive Design**: Mobile-first approach with modern UI components
+- **Performance Optimized**: Server-side rendering and image optimization
+- **Type-Safe**: Full TypeScript support with generated Sanity types
+- **UI Components**: Custom components built with Radix UI and Tailwind
+- **Cart Management**: Client-side shopping cart with persistent storage
+- **Category Navigation**: Dynamic category filtering and navigation
+- **Search Functionality**: Product search with instant results
+- **Animations**: Smooth transitions using Framer Motion
 
-## Tech Stack
+## 🚀 Tech Stack
 
-- **Frontend**:
-  - Next.js 15 (React Framework)
-  - TypeScript
-  - Tailwind CSS
-  - Framer Motion
-  - Radix UI Components
+### Frontend
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Radix UI Components
+- Shadcn UI
 
-- **Backend & CMS**:
-  - Sanity.io
-  - Next.js API Routes
+### Backend & CMS
+- Sanity.io
+- Next.js API Routes
+- Server Components
+- Server Actions
 
-- **Authentication**:
-  - Clerk
+### Authentication & Security
+- Clerk Authentication
+- Middleware Protection
+- Environment Variables
 
-- **Development Tools**:
-  - ESLint
-  - Turbopack
-  - Bun Package Manager
+### Development Tools
+- ESLint
+- Turbopack
+- Bun Package Manager
+- PostCSS
+- TypeScript Configuration
 
-## Installation
+## 🛠️ Installation
 
 1. **Clone the repository**:
    ```bash
@@ -47,23 +60,25 @@ A modern, feature-rich e-commerce platform built with Next.js 15, Sanity CMS, an
 
 3. **Environment Setup**:
    - Copy `.env.example` to `.env.local`
-   - Fill in the required environment variables
+   - Fill in the required environment variables:
+     - Sanity configuration
+     - Clerk authentication keys
+     - API endpoints
 
 4. **Start the development server**:
    ```bash
    bun run dev
    ```
 
-5. **Start Sanity Studio** (in a new terminal):
+5. **Start Sanity Studio**:
    ```bash
-   bun run dev:sanity
+   bun run sanity:dev
    ```
 
-## Configuration
+## ⚙️ Configuration
 
 ### Environment Variables
-
-Create a `.env.local` file with the following variables:
+Required variables in `.env.local`:
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=
@@ -72,44 +87,54 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
 ```
 
-### Sanity Schema
-
-To update Sanity schema types:
+### Type Generation
+Update Sanity schema types:
 ```bash
 bun run typegen
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-├── app/               # Next.js application routes
-├── components/        # Reusable React components
-├── lib/              # Utility functions and configurations
-├── public/           # Static assets
-├── sanity/           # Sanity CMS configuration and schemas
-└── styles/           # Global styles and Tailwind configuration
+├── app/                    # Next.js application routes
+│   ├── (auth)/            # Authentication routes
+│   ├── (store)/           # Store routes (products, categories)
+│   └── api/               # API routes
+├── components/            
+│   ├── ui/                # Reusable UI components
+│   └── store/             # Store-specific components
+├── lib/                   # Utility functions and configs
+├── public/                # Static assets
+├── sanity/               
+│   ├── schemas/           # Content schemas
+│   └── lib/               # Sanity utilities
+└── styles/                # Global styles
 ```
 
-## Development Workflow
+## 🔄 Development Workflow
 
-1. Make changes to your code
-2. Run `bun run typegen` if you update Sanity schemas
-3. Use `bun run dev` with Turbopack for fast development
-4. Commit your changes following conventional commit messages
+1. Create feature branch from `main`
+2. Make changes and test locally
+3. Run `bun run typegen` if updating Sanity schemas
+4. Use `bun run dev` with Turbopack
+5. Commit using conventional commit messages
+6. Create pull request to `main`
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
 
-## Contributing
+## 📝 License
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- Agregando comando al package.json
+## 🙏 Acknowledgments
 
-```script
-  "scripts": {
-    "typegen":"bun x sanity@latest schema extract && bun x sanity@latest typegen generate"
-    ,
-  }
-```
+- Next.js team for the amazing framework
+- Sanity.io for the powerful CMS
+- Shadcn for the beautiful UI components
+- Vercel for hosting and deployment solutions

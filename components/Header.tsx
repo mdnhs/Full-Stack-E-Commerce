@@ -17,7 +17,7 @@ const Header = ({}): ReactElement => {
   };
 
   return (
-    <header className="flex flex-wrap justify-between items-center px-4 xl:px-10 pb-2 pt-6">
+    <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 pb-2 pt-6">
       {/* Top row */}
       <div className="flex w-full flex-wrap justify-between items-center">
         <Link
