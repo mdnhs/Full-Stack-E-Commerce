@@ -2,6 +2,8 @@
 
 A modern, high-performance e-commerce platform built with Next.js 15, Sanity CMS, and TypeScript. This project delivers a seamless shopping experience with server-side rendering, dynamic routing, and a headless CMS architecture.
 
+![E-Commerce Platform Preview](./public/imagen.png)
+
 ## ✨ Features
 
 - **Modern Tech Stack**: Built with Next.js 15, TypeScript, and Tailwind CSS
