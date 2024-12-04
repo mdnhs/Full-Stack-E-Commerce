@@ -1,13 +1,56 @@
 "use client";
+import useBasketStore from "@/store";
 import { ClerkLoaded, SignedIn, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
 import Form from "next/form";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
-const Header = ({}): ReactElement => {
+const Header = (): ReactElement => {
   const { user } = useUser();
+
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  // State
+  const itemCount = useBasketStore((state) => state.items.reduce((total, item) => total + item.quantity, 0));
+
+  useEffect(() => setIsClient(true), []);
+
+  if (!isClient) {
+    return (
+      <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 pb-2 pt-6">
+        <div className="flex w-full flex-wrap justify-between items-center">
+          {/* Logo Skeleton */}
+          <Skeleton className="h-8 w-24" />
+
+          {/* Search Bar Skeleton */}
+          <div className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0">
+            <Skeleton className="h-10 w-full max-w-4xl" />
+          </div>
+
+          {/* Right Side Actions Skeleton */}
+          <div className="flex items-center space-x-2 sm:space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
+            {/* Basket Button Skeleton */}
+            <Skeleton className="h-10 w-24 sm:w-32" />
+            
+            {/* Orders Button Skeleton */}
+            <Skeleton className="h-10 w-24 sm:w-32" />
+            
+            {/* User Area Skeleton */}
+            <div className="flex items-center space-x-2">
+              <Skeleton className="h-8 w-8 rounded-full" />
+              <div className="hidden sm:block">
+                <Skeleton className="h-3 w-20 mb-1" />
+                <Skeleton className="h-4 w-24" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
   const createClerkPasskey = async () => {
     try {
       await user?.createPasskey();
@@ -41,6 +84,9 @@ const Header = ({}): ReactElement => {
           >
             <TrolleyIcon className="w-6 h-6" />
             {/* Span item count once global state is implemented */}
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full size-5 flex items-center justify-center text-xs">
+              {itemCount}
+            </span>
             <span className="text-xs  sm:text-sm">My Basquet</span>
           </Link>
           {/* User area */}
