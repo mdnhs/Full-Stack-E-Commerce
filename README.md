@@ -1,26 +1,28 @@
 # Full-Stack E-Commerce Application
 
-![E-commerce Banner](./public/banner-image.png)
+<!--
+![E-commerce Banner](./public/banner-image.png) -->
 
-## 🚀 Descripción
+## 🚀 Description
 
-Una aplicación de comercio electrónico moderna y robusta construida con Next.js 15, TypeScript, Tailwind CSS, y Sanity CMS. Esta aplicación ofrece una experiencia de compra fluida con características como autenticación de usuarios, gestión de carrito, y un CMS headless para la gestión de productos.
+A modern and robust e-commerce application built with Next.js 15, TypeScript, Tailwind CSS, and Sanity CMS. This application offers a seamless shopping experience with features like user authentication, cart management, and a headless CMS for product management.
 
-## ✨ Características
+## ✨ Features
 
-- 🛍️ Catálogo de productos dinámico
-- 🔐 Autenticación de usuarios con Clerk
-- 🛒 Gestión de carrito de compras con Zustand
-- 📱 Diseño responsive y moderno
-- 🎨 UI personalizada con Tailwind CSS y Radix UI
-- 🖼️ Gestión de contenido con Sanity CMS
-- ⚡ Rendimiento optimizado con Next.js 15
-- 🔄 Estado global con Zustand
-- 🎭 Animaciones fluidas con Framer Motion
+- 🛍️ Dynamic product catalog
+- 🔐 User authentication with Clerk
+- 🛒 Shopping cart management with Zustand
+- 📱 Responsive and modern design
+- 🎨 Custom UI with Tailwind CSS and Radix UI
+- 🖼️ Content management with Sanity CMS
+- ⚡ Optimized performance with Next.js 15
+- 🔄 Global state with Zustand
+- 🎭 Smooth animations with Framer Motion
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Tech Stack
 
 ### Frontend
+
 - Next.js 15.0.3
 - React 19
 - TypeScript
@@ -30,90 +32,97 @@ Una aplicación de comercio electrónico moderna y robusta construida con Next.j
 - Clerk Authentication
 
 ### Backend & CMS
+
 - Sanity v3
 - Next.js API Routes
 - Clerk Authentication
 
-### Estado & Gestión
-- Zustand para estado global
-- Sanity Client para gestión de contenido
+### State & Management
 
-## 🚀 Inicio Rápido
+- Zustand for global state
+- Sanity Client for content management
 
-1. **Clonar el repositorio**
+## 🚀 Quick Start
+
+1. **Clone the repository**
+
    ```bash
-   git clone [url-del-repositorio]
+   git clone [repository-url]
    cd Full-Stack-E-Commerce
    ```
 
-2. **Instalar dependencias**
+2. **Install dependencies**
+
    ```bash
    bun install
    ```
 
-3. **Configurar variables de entorno**
-   Crea un archivo `.env.local` basado en `.env.example`:
+3. **Set up environment variables**
+   Create a `.env.local` file based on `.env.example`:
+
    ```env
-   NEXT_PUBLIC_SANITY_PROJECT_ID=tu-id-de-proyecto
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
    NEXT_PUBLIC_SANITY_DATASET=production
    NEXT_PUBLIC_BASE_URL=http://localhost:3000
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=tu-clerk-key
-   CLERK_SECRET_KEY=tu-clerk-secret
-   SANITY_API_READ_TOKEN=tu-token-de-sanity
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-key
+   CLERK_SECRET_KEY=your-clerk-secret
+   SANITY_API_READ_TOKEN=your-sanity-token
    ```
 
-4. **Iniciar el servidor de desarrollo**
+4. **Start the development server**
+
    ```bash
-   # Desarrollo con Turbopack
+   # Development with Turbopack
    bun run dev
-   
-   # Desarrollo con Sanity Studio
+
+   # Development with Sanity Studio
    bun run dev:sanity
    ```
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
-├── app/                 # Rutas y páginas de Next.js
-├── components/         # Componentes reutilizables
-│   ├── ui/            # Componentes de UI base
-│   └── ...            # Otros componentes
-├── lib/               # Utilidades y configuraciones
-├── public/            # Archivos estáticos
-├── sanity/            # Configuración y esquemas de Sanity
-├── store/             # Estado global con Zustand
-└── types/             # Definiciones de tipos TypeScript
+├── app/                # Next.js routes and pages
+├── components/         # Reusable components
+│   ├── ui/            # Base UI components
+│   └── ...            # Other components
+├── lib/               # Utilities and configurations
+├── public/            # Static files
+├── sanity/            # Sanity configuration and schemas
+├── store/             # Global state with Zustand
+└── types/             # TypeScript type definitions
 ```
 
-## 🧩 Componentes Principales
+## 🧩 Core Components
 
-- `Header.tsx`: Navegación principal y carrito
-- `ProductGrid.tsx`: Visualización de productos en cuadrícula
-- `AddToBasketButton.tsx`: Gestión de carrito
-- `BlackFridayBanner.tsx`: Banner promocional
-- `ProductThumb.tsx`: Vista previa de producto
+- `Header.tsx`: Main navigation and cart
+- `ProductGrid.tsx`: Product grid display
+- `AddToBasketButton.tsx`: Cart management
+- `BlackFridayBanner.tsx`: Promotional banner
+- `ProductThumb.tsx`: Product preview
 
-## 🔧 Hooks y Utilidades
+## 🔧 Hooks and Utilities
 
-- Store de Zustand para gestión del carrito
-- Hooks personalizados para productos y categorías
-- Utilidades de Sanity para gestión de imágenes y contenido
+- Zustand store for cart management
+- Custom hooks for products and categories
+- Sanity utilities for image and content management
 
-## 📚 Documentación de API
+## 📚 API Documentation
 
-La aplicación utiliza las siguientes APIs:
-- Clerk para autenticación
-- Sanity para gestión de contenido
-- API Routes de Next.js para endpoints personalizados
+The application uses the following APIs:
 
-## 🎨 Diseño y UI
+- Clerk for authentication
+- Sanity for content management
+- Next.js API Routes for custom endpoints
 
-- Sistema de diseño personalizado con Tailwind CSS
-- Componentes de Radix UI para accesibilidad
-- Animaciones con Framer Motion
-- Diseño responsive para todas las pantallas
+## 🎨 Design and UI
 
-## 🔐 Variables de Entorno Requeridas
+- Custom design system with Tailwind CSS
+- Radix UI components for accessibility
+- Framer Motion animations
+- Responsive design for all screens
+
+## 🔐 Required Environment Variables
 
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -124,24 +133,53 @@ CLERK_SECRET_KEY
 SANITY_API_READ_TOKEN
 ```
 
-## 🤝 Contribución
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
+Contributions are welcome. Please follow these steps:
 
-1. Fork el repositorio
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto está bajo la Licencia MIT.
+This project is under the MIT License.
 
-## 👥 Autor
+## 👥 Author
 
-[Tu Nombre]
+[Your Name]
 
----
+## 🌟 Additional Features
 
-¿Necesitas ayuda? [Abre un issue](https://github.com/tu-usuario/Full-Stack-E-Commerce/issues)
+- 🔍 Advanced search functionality
+- 📊 Admin dashboard for product management
+- 💳 Secure payment processing
+- 📱 Progressive Web App (PWA) support
+- 🌍 Internationalization ready
+- 📈 Analytics integration
+- 🔒 GDPR compliant
+- 🎯 SEO optimized
+
+## 🔜 Roadmap
+
+- [ ] Add multiple payment gateways
+- [ ] Implement wishlist functionality
+- [ ] Add product reviews and ratings
+- [ ] Integrate email notifications
+- [ ] Add social sharing features
+- [ ] Implement advanced filtering options
+- [ ] Add multi-language support
+- [ ] Integrate with multiple shipping providers
+
+## 💡 Best Practices
+
+- Follows Next.js 15 best practices
+- Implements modern React patterns
+- Uses TypeScript for type safety
+- Follows accessibility guidelines
+- Implements SEO best practices
+- Uses modern CSS techniques
+- Follows security best practices
+- Implements performance optimizations
