@@ -42,6 +42,13 @@ A modern and robust e-commerce application built with Next.js 15, TypeScript, Ta
 - Zustand for global state
 - Sanity Client for content management
 
+### Comands for code formatting
+
+bun install --save-dev eslint eslint-config-next
+bunx eslint --init
+
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+
 ## 🚀 Quick Start
 
 1. **Clone the repository**

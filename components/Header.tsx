@@ -1,12 +1,18 @@
-"use client";
-import useBasketStore from "@/store";
-import { ClerkLoaded, SignedIn, SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import { PackageIcon, TrolleyIcon } from "@sanity/icons";
-import Form from "next/form";
-import Link from "next/link";
-import { ReactElement, useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { Skeleton } from "./ui/skeleton";
+'use client';
+import useBasketStore from '@/store';
+import {
+  ClerkLoaded,
+  SignedIn,
+  SignInButton,
+  UserButton,
+  useUser,
+} from '@clerk/nextjs';
+import { PackageIcon, TrolleyIcon } from '@sanity/icons';
+import Form from 'next/form';
+import Link from 'next/link';
+import { ReactElement, useEffect, useState } from 'react';
+import { Button } from './ui/button';
+import { Skeleton } from './ui/skeleton';
 
 const Header = (): ReactElement => {
   const { user } = useUser();
@@ -14,7 +20,9 @@ const Header = (): ReactElement => {
   const [isClient, setIsClient] = useState<boolean>(false);
 
   // State
-  const itemCount = useBasketStore((state) => state.items.reduce((total, item) => total + item.quantity, 0));
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+  );
 
   useEffect(() => setIsClient(true), []);
 
@@ -34,10 +42,10 @@ const Header = (): ReactElement => {
           <div className="flex items-center space-x-2 sm:space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
             {/* Basket Button Skeleton */}
             <Skeleton className="h-10 w-24 sm:w-32" />
-            
+
             {/* Orders Button Skeleton */}
             <Skeleton className="h-10 w-24 sm:w-32" />
-            
+
             {/* User Area Skeleton */}
             <div className="flex items-center space-x-2">
               <Skeleton className="h-8 w-8 rounded-full" />
@@ -55,7 +63,7 @@ const Header = (): ReactElement => {
     try {
       await user?.createPasskey();
     } catch (error) {
-      console.error("Error creating passkey", JSON.stringify(error, null, 2));
+      console.error('Error creating passkey', JSON.stringify(error, null, 2));
     }
   };
 
@@ -69,7 +77,10 @@ const Header = (): ReactElement => {
         >
           Shoper
         </Link>
-        <Form action="/search" className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0">
+        <Form
+          action="/search"
+          className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0"
+        >
           <input
             type="text"
             name="query"
@@ -79,7 +90,7 @@ const Header = (): ReactElement => {
         </Form>
         <div className="flex items-center space-x-2  sm:space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
           <Link
-            href={"/basket"}
+            href={'/basket'}
             className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-1 sm:space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-1.5 sm:px-4 rounded "
           >
             <TrolleyIcon className="w-6 h-6" />
@@ -93,7 +104,7 @@ const Header = (): ReactElement => {
           <ClerkLoaded>
             <SignedIn>
               <Link
-                href={"/basket"}
+                href={'/basket'}
                 className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-1 sm:space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-1.5 sm:px-4 rounded "
               >
                 <PackageIcon className="w-6 h-6" />
@@ -101,7 +112,7 @@ const Header = (): ReactElement => {
               </Link>
             </SignedIn>
 
-            {user ?
+            {user ? (
               <div className="flex items-center space-x-2">
                 <UserButton />
                 <div className="hidden sm:block text-xs">
@@ -109,12 +120,16 @@ const Header = (): ReactElement => {
                   <p className="font-bold">{user.fullName}</p>
                 </div>
               </div>
-            : <SignInButton mode="modal">
-                <Button variant={"outline"} className="py-5 font-bold text-xs sm:text-sm">
+            ) : (
+              <SignInButton mode="modal">
+                <Button
+                  variant={'outline'}
+                  className="py-5 font-bold text-xs sm:text-sm"
+                >
                   Sign In
                 </Button>
               </SignInButton>
-            }
+            )}
 
             {user?.passkeys?.length === 0 && (
               <button

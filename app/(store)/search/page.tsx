@@ -1,6 +1,6 @@
-import ProductGrid from "@/components/ProductGrid";
-import { searchProductsByName } from "@/sanity/lib/products/searchProductsByName";
-import type { FC } from "react";
+import ProductGrid from '@/components/ProductGrid';
+import { searchProductsByName } from '@/sanity/lib/products/searchProductsByName';
+import type { FC } from 'react';
 
 interface SearchParams {
   searchParams: {
@@ -8,7 +8,9 @@ interface SearchParams {
   };
 }
 
-const SearchPage: FC<SearchParams> = async ({ searchParams }): Promise<JSX.Element> => {
+const SearchPage: FC<SearchParams> = async ({
+  searchParams,
+}): Promise<JSX.Element> => {
   const { query } = await searchParams;
   const products = await searchProductsByName(query);
 
@@ -19,7 +21,9 @@ const SearchPage: FC<SearchParams> = async ({ searchParams }): Promise<JSX.Eleme
           <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
             No products for {query}
           </h1>
-          <p className="text-gray-600 text-center">Try searching with a different keywords</p>
+          <p className="text-gray-600 text-center">
+            Try searching with a different keywords
+          </p>
         </div>
       </div>
     );

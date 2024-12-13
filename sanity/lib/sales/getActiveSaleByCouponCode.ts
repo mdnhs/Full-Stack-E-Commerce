@@ -1,6 +1,6 @@
-import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../live";
-import { CouponCode } from "./couponCodes";
+import { defineQuery } from 'next-sanity';
+import { sanityFetch } from '../live';
+import { CouponCode } from './couponCodes';
 
 export const getActiveSaleByCouponCode = async (couponCode: CouponCode) => {
   const ACTIVE_SALE_BY_COUPON_QUERY = defineQuery(`
@@ -16,7 +16,7 @@ export const getActiveSaleByCouponCode = async (couponCode: CouponCode) => {
     });
     return activeSale ? activeSale.data : null;
   } catch (error) {
-    console.log("Error fetching active sale by coupon code:", error);
+    console.log('Error fetching active sale by coupon code:', error);
     return null;
   }
 };

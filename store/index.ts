@@ -1,6 +1,6 @@
-import type { Product } from "@/sanity.types";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import type { Product } from '@/sanity.types';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface BasketItem {
   product: Product;
@@ -25,7 +25,9 @@ const useBasketStore = create<BasketState>()(
       // Add item to basket
       addItem: (product) =>
         set((state) => {
-          const existingItem = state.items.find((item) => item.product._id === product._id);
+          const existingItem = state.items.find(
+            (item) => item.product._id === product._id
+          );
           if (existingItem) {
             return {
               items: state.items.map((item) => {
@@ -57,7 +59,11 @@ const useBasketStore = create<BasketState>()(
           }, [] as BasketItem[]),
         })),
       clearBasket: () => set({ items: [] }),
-      getTotalPrice: () => get().items.reduce((total, item) => total + (item.product.price ?? 0) * item.quantity, 0),
+      getTotalPrice: () =>
+        get().items.reduce(
+          (total, item) => total + (item.product.price ?? 0) * item.quantity,
+          0
+        ),
       getItemCount: (productId) => {
         const item = get().items.find((item) => item.product._id === productId);
         return item ? item.quantity : 0;
@@ -65,7 +71,7 @@ const useBasketStore = create<BasketState>()(
       getGroupedItems: () => get().items,
     }),
     {
-      name: "basket-store",
+      name: 'basket-store',
     }
   )
 );

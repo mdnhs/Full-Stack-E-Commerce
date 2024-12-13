@@ -1,14 +1,14 @@
-"use client";
-import type { Metadata } from "@/actions/createCheckoutSession";
-import AddToBasketButton from "@/components/AddToBasketButton";
-import Loader from "@/components/Loader";
-import { imageUrl } from "@/lib/imageUrl";
-import useBasketStore from "@/store";
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+'use client';
+import type { Metadata } from '@/actions/createCheckoutSession';
+import AddToBasketButton from '@/components/AddToBasketButton';
+import Loader from '@/components/Loader';
+import { imageUrl } from '@/lib/imageUrl';
+import useBasketStore from '@/store';
+import { SignInButton, useAuth, useUser } from '@clerk/nextjs';
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
 
 const BasketPage: FC = () => {
   const { getGroupedItems } = useBasketStore();
@@ -29,7 +29,9 @@ const BasketPage: FC = () => {
     return (
       <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
         <h1 className="text-2xl font-bold mb-6">Your basket is empty</h1>
-        <p className="text-gray-600 text-lg">Start adding some products to your basket</p>
+        <p className="text-gray-600 text-lg">
+          Start adding some products to your basket
+        </p>
       </div>
     );
   }
@@ -42,13 +44,13 @@ const BasketPage: FC = () => {
     try {
       const metadata: Metadata = {
         orderNumber: crypto.randomUUID(),
-        customerName: user?.fullName || "Unknown",
-        customerEmail: user?.emailAddresses[0].emailAddress || "Unknown",
+        customerName: user?.fullName || 'Unknown',
+        customerEmail: user?.emailAddresses[0].emailAddress || 'Unknown',
         clerkUserId: user!.id,
       };
-      console.log("metadata", metadata);
+      console.log('metadata', metadata);
     } catch (error) {
-      console.log("Error checking out:", error);
+      console.log('Error checking out:', error);
     }
   };
 
@@ -64,13 +66,15 @@ const BasketPage: FC = () => {
             >
               <div
                 className="flex items-center cursor-pointer flex-1 min-w-0"
-                onClick={() => router.push(`/product/${item.product.slug?.current}`)}
+                onClick={() =>
+                  router.push(`/product/${item.product.slug?.current}`)
+                }
               >
                 <div className="size-20 sm:size-24 flex-shrink-0 mr-4">
                   {item.product.image && (
                     <Image
                       src={imageUrl(item.product.image).url()}
-                      alt={item.product.name || "Product Image"}
+                      alt={item.product.name || 'Product Image'}
                       className="size-full object-cover rounded"
                       width={96}
                       height={96}
@@ -79,7 +83,9 @@ const BasketPage: FC = () => {
                 </div>
 
                 <div className="min-w-0">
-                  <h2 className="text-lg font-semibold sm:text-xl truncate">{item.product.name}</h2>
+                  <h2 className="text-lg font-semibold sm:text-xl truncate">
+                    {item.product.name}
+                  </h2>
                   <p className="text-sm sm:text-base">
                     ${((item.product.price ?? 0) * item.quantity).toFixed(2)}
                   </p>
@@ -97,28 +103,36 @@ const BasketPage: FC = () => {
           <div className="mt-4 space-y-2">
             <p className="flex justify-between">
               <span>Items</span>
-              <span>{getGroupedItems().reduce((total, item) => total + item.quantity, 0)}</span>
+              <span>
+                {getGroupedItems().reduce(
+                  (total, item) => total + item.quantity,
+                  0
+                )}
+              </span>
             </p>
             <p className="flex justify-between text-2xl font-bold border-t pt-2">
               <span>Total:</span>
-              <span>${useBasketStore.getState().getTotalPrice().toFixed(2)}</span>
+              <span>
+                ${useBasketStore.getState().getTotalPrice().toFixed(2)}
+              </span>
             </p>
           </div>
           {/* Checkout */}
-          {isSignedIn ?
+          {isSignedIn ? (
             <button
               onClick={handleCheckout}
               disabled={isLoading}
               className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-400"
             >
-              {isLoading ? "Processing..." : "Checkout"}
+              {isLoading ? 'Processing...' : 'Checkout'}
             </button>
-          : <SignInButton mode="modal">
+          ) : (
+            <SignInButton mode="modal">
               <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                 Sign in to checkout
               </button>
             </SignInButton>
-          }
+          )}
         </div>
         <div className="h-64 lg:h-0" />
       </div>

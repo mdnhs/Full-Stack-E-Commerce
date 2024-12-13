@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import type { BasketItem } from "@/store";
+import type { BasketItem } from '@/store';
 
 export type Metadata = {
   orderNumber: string;
@@ -10,19 +10,22 @@ export type Metadata = {
 };
 
 export type GroupedBasketItem = {
-  product: BasketItem["product"];
+  product: BasketItem['product'];
   quantity: number;
 };
 
-export async function createCheckoutSession(items: BasketItem[], metadata: Metadata) {
+export async function createCheckoutSession(
+  items: BasketItem[],
+  metadata: Metadata
+) {
   try {
     //    check if any grouped items dont have a price
     const itemsWithoutPrice = items.filter((item) => !item.product.price);
 
     if (itemsWithoutPrice.length > 0) {
-      throw new Error("Grouped items do not have a price");
+      throw new Error('Grouped items do not have a price');
     }
   } catch (error) {
-    console.log("Error creating checkout session:", error);
+    console.log('Error creating checkout session:', error);
   }
 }

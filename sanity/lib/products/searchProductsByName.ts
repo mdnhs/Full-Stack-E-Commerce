@@ -1,5 +1,5 @@
-import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../live";
+import { defineQuery } from 'next-sanity';
+import { sanityFetch } from '../live';
 
 export const searchProductsByName = async (searchParam: string) => {
   const PRODUCT_SEARCH_QUERY = defineQuery(`
@@ -23,7 +23,7 @@ export const searchProductsByName = async (searchParam: string) => {
     });
     return products.data || [];
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error('Error fetching products:', error);
     return [];
   }
 };

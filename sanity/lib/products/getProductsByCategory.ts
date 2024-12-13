@@ -1,5 +1,5 @@
-import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../live";
+import { defineQuery } from 'next-sanity';
+import { sanityFetch } from '../live';
 
 /**
  * Fetches all products that belong to a specific category
@@ -24,7 +24,7 @@ export const getProductsByCategory = async (categorySlug: string) => {
 
     return products.data || [];
   } catch (error) {
-    console.error("Error fetching products by category:", error);
+    console.error('Error fetching products by category:', error);
     throw error;
   }
 };
