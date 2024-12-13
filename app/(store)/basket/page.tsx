@@ -1,22 +1,17 @@
 "use client";
+import type { Metadata } from "@/actions/createCheckoutSession";
 import AddToBasketButton from "@/components/AddToBasketButton";
 import Loader from "@/components/Loader";
 import { imageUrl } from "@/lib/imageUrl";
 import useBasketStore from "@/store";
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
-export type Metadata = {
-  orderNumber: string;
-  customerName: string;
-  customerEmail: string;
-  clerkUserId: string;
-};
-
 const BasketPage: FC = () => {
-  const groupedItems = useBasketStore((state) => state.getGroupedItems());
+  const { getGroupedItems } = useBasketStore();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
   const router = useRouter();
@@ -30,7 +25,7 @@ const BasketPage: FC = () => {
     return <Loader />;
   }
 
-  if (groupedItems.length === 0) {
+  if (getGroupedItems().length === 0) {
     return (
       <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
         <h1 className="text-2xl font-bold mb-6">Your basket is empty</h1>
@@ -39,21 +34,21 @@ const BasketPage: FC = () => {
     );
   }
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!isSignedIn) return;
     setIsLoading(true);
 
     try {
       const metadata: Metadata = {
         orderNumber: crypto.randomUUID(),
-        customerName: user?.fullName ?? "Unknown",
-        customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
+        customerName: user?.fullName || "Unknown",
+        customerEmail: user?.emailAddresses[0].emailAddress || "Unknown",
         clerkUserId: user!.id,
       };
+      console.log("metadata", metadata);
     } catch (error) {
       console.log("Error checking out:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -62,7 +57,7 @@ const BasketPage: FC = () => {
       <h1 className="text-2xl font-bold mb-4">Your Basket </h1>
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="flex-grow">
-          {groupedItems?.map((item) => (
+          {getGroupedItems()?.map((item) => (
             <div
               key={item.product._id}
               className="mb-4 p-4 border rounded flex items-center justify-between"
@@ -102,7 +97,7 @@ const BasketPage: FC = () => {
           <div className="mt-4 space-y-2">
             <p className="flex justify-between">
               <span>Items</span>
-              <span>{groupedItems.reduce((total, item) => total + item.quantity, 0)}</span>
+              <span>{getGroupedItems().reduce((total, item) => total + item.quantity, 0)}</span>
             </p>
             <p className="flex justify-between text-2xl font-bold border-t pt-2">
               <span>Total:</span>
@@ -112,8 +107,8 @@ const BasketPage: FC = () => {
           {/* Checkout */}
           {isSignedIn ?
             <button
-              disabled={isLoading}
               onClick={handleCheckout}
+              disabled={isLoading}
               className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-400"
             >
               {isLoading ? "Processing..." : "Checkout"}
