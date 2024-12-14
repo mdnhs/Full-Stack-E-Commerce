@@ -1,81 +1,81 @@
-import { BasketIcon } from '@sanity/icons';
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { BasketIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const orderType = defineType({
-  name: 'order',
-  title: 'Order',
-  type: 'document',
+  name: "order",
+  title: "Order",
+  type: "document",
   icon: BasketIcon,
   fields: [
     defineField({
-      name: 'orderNumber',
-      title: 'Order Number',
-      type: 'string',
+      name: "orderNumber",
+      title: "Order Number",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'stripeCheckoutSessionId',
-      title: 'Stripe Checkout Session ID',
-      type: 'string',
+      name: "stripeCheckoutSessionId",
+      title: "Stripe Checkout Session ID",
+      type: "string",
     }),
     defineField({
-      name: 'stripeCustomerId',
-      title: 'Stripe Customer ID',
-      type: 'string',
+      name: "stripeCustomerId",
+      title: "Stripe Customer ID",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'clerkUserId',
-      title: 'Store User ID',
-      type: 'string',
+      name: "clerkUserId",
+      title: "Store User ID",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'customerName',
-      title: 'Customer Name',
-      type: 'string',
+      name: "customerName",
+      title: "Customer Name",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'email',
-      title: 'Customer Email',
-      type: 'string',
+      name: "email",
+      title: "Customer Email",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'stripePaymentIntentId',
-      title: 'Stripe Payment Intent ID',
-      type: 'string',
+      name: "stripePaymentIntentId",
+      title: "Stripe Payment Intent ID",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: 'products',
-      title: 'Products',
-      type: 'array',
+      name: "products",
+      title: "Products",
+      type: "array",
       of: [
         defineArrayMember({
-          type: 'object',
+          type: "object",
           fields: [
             defineField({
-              name: 'product',
-              title: 'Product Bought',
-              type: 'reference',
-              to: { type: 'product' },
+              name: "product",
+              title: "Product Bought",
+              type: "reference",
+              to: { type: "product" },
             }),
             defineField({
-              name: 'quantity',
-              title: 'Quantity Purchased',
-              type: 'number',
+              name: "quantity",
+              title: "Quantity Purchased",
+              type: "number",
             }),
           ],
           preview: {
             select: {
-              product: 'product.name',
-              quantity: 'quantity',
-              image: 'product.image',
-              price: 'product.price',
-              currency: 'product.currency',
+              product: "product.name",
+              quantity: "quantity",
+              image: "product.image",
+              price: "product.price",
+              currency: "product.currency",
             },
             prepare(select) {
               return {
@@ -89,53 +89,53 @@ export const orderType = defineType({
       ],
     }),
     defineField({
-      name: 'totalPrice',
-      title: 'Total Price',
-      type: 'number',
+      name: "totalPrice",
+      title: "Total Price",
+      type: "number",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'currency',
-      title: 'Currency',
-      type: 'string',
+      name: "currency",
+      title: "Currency",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'amountDiscount',
-      title: 'Amount Discount',
-      type: 'number',
+      name: "amountDiscount",
+      title: "Amount Discount",
+      type: "number",
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: 'status',
-      title: 'Order Status',
-      type: 'string',
+      name: "status",
+      title: "Order Status",
+      type: "string",
       options: {
         list: [
-          { title: 'Pending', value: 'pending' },
-          { title: 'Paid', value: 'paid' },
-          { title: 'Shipped', value: 'shipped' },
-          { title: 'Delivered', value: 'delivered' },
-          { title: 'Cancelled', value: 'cancelled' },
+          { title: "Pending", value: "pending" },
+          { title: "Paid", value: "paid" },
+          { title: "Shipped", value: "shipped" },
+          { title: "Delivered", value: "delivered" },
+          { title: "Cancelled", value: "cancelled" },
         ],
       },
     }),
 
     defineField({
-      name: 'orderDate',
-      title: 'Order Date',
-      type: 'datetime',
+      name: "orderDate",
+      title: "Order Date",
+      type: "datetime",
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
-      name: 'customerName',
-      amount: 'totalPrice',
-      currency: 'currency',
-      orderId: 'orderNumber',
-      email: 'email',
+      name: "customerName",
+      amount: "totalPrice",
+      currency: "currency",
+      orderId: "orderNumber",
+      email: "email",
     },
 
     prepare(select) {

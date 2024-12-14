@@ -1,7 +1,7 @@
-import { CategorySelectorComponent } from '@/components/ui/category-selector';
-import { type Category, type Product } from '@/sanity.types';
-import { FC, ReactElement } from 'react';
-import ProductGrid from './ProductGrid';
+import { CategorySelectorComponent } from "@/components/ui/category-selector";
+import { type Category, type Product } from "@/sanity.types";
+import { FC, ReactElement } from "react";
+import ProductGrid from "./ProductGrid";
 
 interface ProductsViewProps {
   products: Product[];

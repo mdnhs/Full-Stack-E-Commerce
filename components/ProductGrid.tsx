@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import type { Product } from '@/sanity.types';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FC, ReactElement } from 'react';
-import ProductThumb from './ProductThumb';
+import type { Product } from "@/sanity.types";
+import { AnimatePresence, motion } from "framer-motion";
+import { FC, ReactElement } from "react";
+import ProductThumb from "./ProductThumb";
 
 interface ProductGridProps {
   products: Product[];

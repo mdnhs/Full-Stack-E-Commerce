@@ -1,7 +1,7 @@
-'use client';
-import type { Product } from '@/sanity.types';
-import useBasketStore from '@/store';
-import { FC, useEffect, useState } from 'react';
+"use client";
+import type { Product } from "@/sanity.types";
+import useBasketStore from "@/store";
+import { FC, useEffect, useState } from "react";
 
 interface AddToBasketButtonProps {
   // Prop types here
@@ -25,11 +25,11 @@ const AddToBasketButton: FC<AddToBasketButtonProps> = ({
     <div className="flex items-center justify-center space-x-2">
       <button
         onClick={() => removeItem(product._id)}
-        className={`size-8 rounded-full flex items-center justify-center transition-colors duration-200 ${itemCount === 0 ? 'bg-gray-100 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`}
+        className={`size-8 rounded-full flex items-center justify-center transition-colors duration-200 ${itemCount === 0 ? "bg-gray-100 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
         disabled={itemCount === 0 || disabled}
       >
         <span
-          className={`text-xl font-bold ${itemCount === 0 ? 'text-gray-400' : 'text-gray-600'} `}
+          className={`text-xl font-bold ${itemCount === 0 ? "text-gray-400" : "text-gray-600"} `}
         >
           -
         </span>
@@ -39,8 +39,8 @@ const AddToBasketButton: FC<AddToBasketButtonProps> = ({
         onClick={() => addItem(product)}
         className={`size-8 rounded-full flex items-center justify-center transition-colors duration-200 ${
           disabled
-            ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-blue-500 hover:bg-gray-600'
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-gray-600"
         }`}
         disabled={disabled}
       >

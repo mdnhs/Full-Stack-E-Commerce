@@ -1,5 +1,5 @@
-import { defineQuery } from 'next-sanity';
-import { sanityFetch } from '../live';
+import { defineQuery } from "next-sanity";
+import { sanityFetch } from "../live";
 
 export const getProductBySlug = async (slug: string) => {
   const PRODUCT_BY_ID_QUERY = defineQuery(`
@@ -13,7 +13,7 @@ export const getProductBySlug = async (slug: string) => {
     });
     return product.data || null;
   } catch (error) {
-    console.error('Error fetching product by slug:', error);
+    console.error("Error fetching product by slug:", error);
     return null;
   }
 };

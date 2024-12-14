@@ -1,5 +1,5 @@
-import { defineQuery } from 'next-sanity';
-import { sanityFetch } from '../live';
+import { defineQuery } from "next-sanity";
+import { sanityFetch } from "../live";
 
 export const getAllProducts = async () => {
   const ALL_PRODUCTS_QUERY = defineQuery(`
@@ -12,7 +12,7 @@ export const getAllProducts = async () => {
     // Returns the list of products, or an empty array
     return products.data || [];
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error("Error fetching products:", error);
     return [];
   }
 };

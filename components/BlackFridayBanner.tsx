@@ -1,6 +1,6 @@
-import { COUPON_CODE } from '@/sanity/lib/sales/couponCodes';
-import { getActiveSaleByCouponCode } from '@/sanity/lib/sales/getActiveSaleByCouponCode';
-import { ReactElement } from 'react';
+import { COUPON_CODE } from "@/sanity/lib/sales/couponCodes";
+import { getActiveSaleByCouponCode } from "@/sanity/lib/sales/getActiveSaleByCouponCode";
+import { ReactElement } from "react";
 
 const BlackFridayBanner = async (): Promise<ReactElement | null> => {
   const sale = await getActiveSaleByCouponCode(COUPON_CODE.BFRIDAY2024);

@@ -1,20 +1,24 @@
-'use client';
-import type { Metadata } from '@/actions/createCheckoutSession';
-import AddToBasketButton from '@/components/AddToBasketButton';
-import Loader from '@/components/Loader';
-import { imageUrl } from '@/lib/imageUrl';
-import useBasketStore from '@/store';
-import { SignInButton, useAuth, useUser } from '@clerk/nextjs';
+"use client";
+import {
+  createCheckoutSession,
+  type Metadata,
+} from "@/actions/createCheckoutSession";
+import AddToBasketButton from "@/components/AddToBasketButton";
+import Loader from "@/components/Loader";
+import { imageUrl } from "@/lib/imageUrl";
+import useBasketStore from "@/store";
+import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { FC, useEffect, useState } from 'react';
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FC, useEffect, useState } from "react";
 
 const BasketPage: FC = () => {
   const { getGroupedItems } = useBasketStore();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
   const router = useRouter();
+  const groupedItems = getGroupedItems();
 
   const [isClient, setIsClient] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -44,13 +48,18 @@ const BasketPage: FC = () => {
     try {
       const metadata: Metadata = {
         orderNumber: crypto.randomUUID(),
-        customerName: user?.fullName || 'Unknown',
-        customerEmail: user?.emailAddresses[0].emailAddress || 'Unknown',
+        customerName: user?.fullName || "Unknown",
+        customerEmail: user?.emailAddresses[0].emailAddress || "Unknown",
         clerkUserId: user!.id,
       };
-      console.log('metadata', metadata);
+
+      const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
+      console.log("Checkout URL:", checkoutUrl);
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
     } catch (error) {
-      console.log('Error checking out:', error);
+      console.log("Error checking out:", error);
     }
   };
 
@@ -74,7 +83,7 @@ const BasketPage: FC = () => {
                   {item.product.image && (
                     <Image
                       src={imageUrl(item.product.image).url()}
-                      alt={item.product.name || 'Product Image'}
+                      alt={item.product.name || "Product Image"}
                       className="size-full object-cover rounded"
                       width={96}
                       height={96}
@@ -106,7 +115,7 @@ const BasketPage: FC = () => {
               <span>
                 {getGroupedItems().reduce(
                   (total, item) => total + item.quantity,
-                  0
+                  0,
                 )}
               </span>
             </p>
@@ -124,7 +133,7 @@ const BasketPage: FC = () => {
               disabled={isLoading}
               className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-400"
             >
-              {isLoading ? 'Processing...' : 'Checkout'}
+              {isLoading ? "Processing..." : "Checkout"}
             </button>
           ) : (
             <SignInButton mode="modal">

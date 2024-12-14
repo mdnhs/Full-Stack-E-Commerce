@@ -1,6 +1,6 @@
-import ProductGrid from '@/components/ProductGrid';
-import { searchProductsByName } from '@/sanity/lib/products/searchProductsByName';
-import type { FC } from 'react';
+import ProductGrid from "@/components/ProductGrid";
+import { searchProductsByName } from "@/sanity/lib/products/searchProductsByName";
+import type { FC } from "react";
 
 interface SearchParams {
   searchParams: {
