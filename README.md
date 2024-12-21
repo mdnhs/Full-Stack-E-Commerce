@@ -140,6 +140,26 @@ CLERK_SECRET_KEY
 SANITY_API_READ_TOKEN
 ```
 
+## Dependencies and Scripts
+
+```json
+"dependencies": {
+   "@commitlint/cli": "^19.6.0",
+   "@commitlint/config-conventional": "^19.6.0",
+   "commitlint": "^19.6.0",
+   "eslint": "9.17.0",
+   "eslint-config-prettier": "^9.1.0",
+   "eslint-plugin-prettier": "^5.2.1",
+   "husky": "^9.1.7",
+   "prettier": "^3.4.2",
+}
+
+//  Commands for Husky:
+
+npx husky add .husky/pre-commit "bun run format && bun run lint"
+npx husky add .husky/commit-msg "bun x --no-install commitlint --edit $1"
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome. Please follow these steps:

@@ -3,6 +3,7 @@
 import type { Product } from "@/sanity.types";
 import { AnimatePresence, motion } from "framer-motion";
 import { FC, ReactElement } from "react";
+import ProductCard from "./ProductCard";
 import ProductThumb from "./ProductThumb";
 
 interface ProductGridProps {
@@ -21,7 +22,8 @@ const ProductGrid: FC<ProductGridProps> = ({ products }): ReactElement => {
             exit={{ opacity: 0 }}
             className="flex justify-center"
           >
-            <ProductThumb product={product} />
+            <ProductCard product={product} />
+            {/* <ProductThumb product={product} /> */}
           </motion.div>
         </AnimatePresence>
       ))}

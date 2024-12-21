@@ -15,7 +15,7 @@ const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
   return (
     <Link
       href={`/product/${product.slug?.current}`}
-      className={`group flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md min-w-72 transition-all duration-300  overflow-hidden ${
+      className={`group flex flex-col bg-red-300 rounded-lg border border-gray-200 shadow-sm hover:shadow-md min-w-72 transition-all duration-300  overflow-hidden ${
         isOutOfStock ? "opacity-50" : ""
       }`}
     >
