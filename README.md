@@ -1,7 +1,6 @@
 # Full-Stack E-Commerce Application
 
-<!--
-![E-commerce Banner](./public/banner-image.png) -->
+![E-commerce Banner](./public/resource.png)
 
 ## 🚀 Description
 
@@ -129,17 +128,6 @@ The application uses the following APIs:
 - Framer Motion animations
 - Responsive design for all screens
 
-## 🔐 Required Environment Variables
-
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID
-NEXT_PUBLIC_SANITY_DATASET
-NEXT_PUBLIC_BASE_URL
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-CLERK_SECRET_KEY
-SANITY_API_READ_TOKEN
-```
-
 ## Dependencies and Scripts
 
 ```json
@@ -170,25 +158,6 @@ Contributions are welcome. Please follow these steps:
 4. Push to the branch
 5. Open a Pull Request
 
-## 📝 License
-
-This project is under the MIT License.
-
-## 👥 Author
-
-[Your Name]
-
-## 🌟 Additional Features
-
-- 🔍 Advanced search functionality
-- 📊 Admin dashboard for product management
-- 💳 Secure payment processing
-- 📱 Progressive Web App (PWA) support
-- 🌍 Internationalization ready
-- 📈 Analytics integration
-- 🔒 GDPR compliant
-- 🎯 SEO optimized
-
 ## 🔜 Roadmap
 
 - [ ] Add multiple payment gateways
@@ -210,3 +179,11 @@ This project is under the MIT License.
 - Uses modern CSS techniques
 - Follows security best practices
 - Implements performance optimizations
+
+## 📝 License
+
+This project is under the MIT License.
+
+## 👥 Author
+
+[Deus lo vult]
