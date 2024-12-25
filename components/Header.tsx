@@ -1,23 +1,28 @@
 "use client";
+
 import useBasketStore from "@/store";
 import {
   ClerkLoaded,
+  ClerkLoading,
   SignedIn,
   SignInButton,
   UserButton,
   useUser,
 } from "@clerk/nextjs";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
+import { div, header } from "framer-motion/client";
 import Form from "next/form";
 import Link from "next/link";
 import { ReactElement, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import { Search } from "lucide-react";
 
 const Header = (): ReactElement => {
   const { user } = useUser();
 
   const [isClient, setIsClient] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // State
   const itemCount = useBasketStore((state) =>
@@ -35,25 +40,15 @@ const Header = (): ReactElement => {
 
           {/* Search Bar Skeleton */}
           <div className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0">
-            <Skeleton className="h-10 w-full max-w-4xl" />
+            <Skeleton className="h-10 w-full max-w-[55rem]" />
           </div>
 
           {/* Right Side Actions Skeleton */}
           <div className="flex items-center space-x-2 sm:space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
             {/* Basket Button Skeleton */}
             <Skeleton className="h-10 w-24 sm:w-32" />
-
             {/* Orders Button Skeleton */}
-            <Skeleton className="h-10 w-24 sm:w-32" />
-
-            {/* User Area Skeleton */}
-            <div className="flex items-center space-x-2">
-              <Skeleton className="h-8 w-8 rounded-full" />
-              <div className="hidden sm:block">
-                <Skeleton className="h-3 w-20 mb-1" />
-                <Skeleton className="h-4 w-24" />
-              </div>
-            </div>
+            <Skeleton className="h-10 w-20" />
           </div>
         </div>
       </header>
@@ -63,7 +58,7 @@ const Header = (): ReactElement => {
     try {
       await user?.createPasskey();
     } catch (error) {
-      console.error("Error creating passkey", JSON.stringify(error, null, 2));
+      console.log("Error creating passkey:", error);
     }
   };
 
@@ -81,12 +76,17 @@ const Header = (): ReactElement => {
           action="/search"
           className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0"
         >
-          <input
-            type="text"
-            name="query"
-            placeholder="Search for products"
-            className="bg-gray-100/30 text-gray-800 px-4 py-2 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-opacity-30 border w-full max-w-4xl"
-          />
+          <div className="relative">
+            <input
+              type="text"
+              name="query"
+              placeholder="Search for products"
+              className="bg-gray-100/30 text-gray-800 pl-9 pr-4 py-2 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-opacity-30 border w-full max-w-4xl
+              placeholder:text-base placeholder:font-normal placeholder:opacity-60
+              "
+            />
+            <Search className="pointer-events-none absolute left-2 top-1/2 size-5 -translate-y-1/2 select-none opacity-30" />
+          </div>
         </Form>
         <div className="flex items-center space-x-2  sm:space-x-4 mt-4 sm:mt-0 flex-1 sm:flex-none">
           <Link
@@ -98,9 +98,12 @@ const Header = (): ReactElement => {
             <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full size-5 flex items-center justify-center text-xs">
               {itemCount}
             </span>
-            <span className="text-xs  sm:text-sm">My Basquet</span>
+            <span className="text-xs  sm:text-sm">Mi Carrito</span>
           </Link>
           {/* User area */}
+          <ClerkLoading>
+            <Skeleton className="h-10 w-20" />
+          </ClerkLoading>
           <ClerkLoaded>
             <SignedIn>
               <Link
@@ -108,7 +111,7 @@ const Header = (): ReactElement => {
                 className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-1 sm:space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-1.5 sm:px-4 rounded "
               >
                 <PackageIcon className="w-6 h-6" />
-                <span className="text-xs sm:text-sm">My Orders</span>
+                <span className="text-xs sm:text-sm">Mis Pedidos</span>
               </Link>
             </SignedIn>
 

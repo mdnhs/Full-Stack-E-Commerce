@@ -23,8 +23,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   //   const isOutOfStock = product.stock != null && product.stock <= 0;
 
   return (
-    <Link href={`/products/${product.slug?.current}`}>
-      <Card className="w-[350px] overflow-hidden group bg-[#f6f6f6] backdrop-blur-sm border-neutral-200/50 hover:shadow-xl transition-all duration-500 relative">
+    <Link href={`/product/${product.slug?.current}`}>
+      <Card className="w-[350px] overflow-hidden group bg-[#f6f6f6] border hover:shadow-xl transition-all duration-500 relative">
         <CardContent className="p-0">
           <div className="relative overflow-hidden">
             <div className="relative h-[400px]">
@@ -34,7 +34,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 priority
                 width={800}
                 height={800}
-                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-contain "
               />
               <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
@@ -43,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <Button
               size="icon"
               variant="secondary"
-              className="absolute top-4 right-4 rounded-full w-10 h-10 bg-white/70 backdrop-blur-sm hover:bg-white transition-all duration-300 hover:scale-110 z-10"
+              className="absolute top-4 right-4 rounded-full w-10 h-10 bg-white/70 selection:hover:bg-white transition-all duration-300 hover:scale-110 z-10"
               onClick={(e) => {
                 e.preventDefault();
                 // Share logic here
@@ -136,16 +136,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             )}
 
-            {product.stock ? (
-              <div>
-                {product.stock < 8 && (
-                  <p className="text-sm font-medium text-red-400">
-                    {/* Only {product.stock} left in stock */}
-                    Only {product.stock} units left
-                  </p>
-                )}
-              </div>
-            ) : (
+            {product.stock && product.stock <= 0 && (
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <span className="text-white text-lg font-bold">
                   Out of Stock

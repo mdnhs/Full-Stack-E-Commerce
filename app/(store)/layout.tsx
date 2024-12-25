@@ -3,6 +3,8 @@ import { SanityLive } from "@/sanity/lib/live";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "../globals.css";
+import HeaderDiscount from "@/components/HeaderDiscount";
+import SliderImages from "@/components/SliderImages";
 
 export const metadata: Metadata = {
   title: "Ropa online - Tienda de ropa para hombre y mujer",
@@ -60,10 +62,12 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider dynamic>
-      <html lang="en">
+      <html lang="es">
         <body suppressHydrationWarning>
           <main>
+            <HeaderDiscount />
             <Header />
+            <SliderImages />
             {children}
           </main>
           <SanityLive />
