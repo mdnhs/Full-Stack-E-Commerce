@@ -69,10 +69,20 @@ npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
    ```env
    NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
    NEXT_PUBLIC_SANITY_DATASET=production
+
    NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
+   <!-- La misma clave -->
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-key
    CLERK_SECRET_KEY=your-clerk-secret
-   SANITY_API_READ_TOKEN=your-sanity-token
+
+   <!-- La misma clave -->
+   SANITY_API_READ_TOKEN=your-sanity-token=
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+
+   STRIPE_SECRET_KEY=
+   <!-- Crearla usando el Cli de Stripe -->
+   STRIPE_WEBHOOK_SECRET=
    ```
 
 4. **Start the development server**
@@ -160,10 +170,10 @@ Contributions are welcome. Please follow these steps:
 
 ## 🔜 Roadmap
 
-- [ ] Add multiple payment gateways
+- [ x ] Add multiple payment gateways
 - [ ] Implement wishlist functionality
 - [ ] Add product reviews and ratings
-- [ ] Integrate email notifications
+- [ x ] Integrate email notifications
 - [ ] Add social sharing features
 - [ ] Implement advanced filtering options
 - [ ] Add multi-language support
