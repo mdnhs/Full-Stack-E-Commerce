@@ -7,7 +7,7 @@ const HeaderDiscount = async (): Promise<ReactElement | null> => {
   if (!sale) return null;
 
   return (
-    <div className="py-2.5 text-zinc-200 text-center font-medium  text-base bg-black animate animate-out  ">
+    <div className="py-2.5 text-zinc-200 text-center font-medium text-xs  md:text-base bg-black animate animate-out  ">
       Usa el código{" "}
       <span className="text-white font-bold">{sale.couponCode}</span> para{" "}
       <span className="text-white font-bold">{sale.discountAmount}%</span> de

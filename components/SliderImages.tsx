@@ -1,22 +1,26 @@
 "use client";
-import { ReactElement } from "react";
-import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import AutoPlay from "embla-carousel-autoplay";
+import { ReactElement } from "react";
+import ImageSlider from "./ImageSlider";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 const ImagesSlider = [
   {
     id: 1,
-    src: "/slider/banner_desktop_01.jpg",
+    srcDesktop: "/slider/Desktop-1.jpg",
+    srcMobile: "/slider/MOBILE-1.webp",
     alt: "Slider 1",
   },
   {
     id: 2,
-    src: "/slider/banner_desktop_01.jpg",
+    srcDesktop: "/slider/Desktop-2.jpg",
+    srcMobile: "/slider/MOBILE-2.webp",
     alt: "Slider 2",
   },
   {
     id: 3,
-    src: "/slider/SLIDE-3380x850-POLERAS.jpg",
+    srcDesktop: "/slider/Desktop-1.jpg",
+    srcMobile: "/slider/MOBILE-3.webp",
     alt: "Slider 3",
   },
 ];
@@ -31,9 +35,9 @@ const SliderImages = ({}): ReactElement => {
       ]}
     >
       <CarouselContent>
-        {ImagesSlider.map(({ id, src, alt }) => (
-          <CarouselItem key={id}>
-            <img src={src} alt={alt} className="w-full h-full object-cover" />
+        {ImagesSlider.map(({ id, ...ImageSliderProps }) => (
+          <CarouselItem key={id} className="relative h-[300px] md:h-[550px]">
+            <ImageSlider id={id} {...ImageSliderProps} />
           </CarouselItem>
         ))}
       </CarouselContent>
