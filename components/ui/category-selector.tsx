@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import type { Category } from "@/sanity.types";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CategorySelectorProps {
@@ -27,9 +27,14 @@ interface CategorySelectorProps {
 export function CategorySelectorComponent({
   categories,
 }: CategorySelectorProps) {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState<string>("");
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const slug = useParams().slug;
+  const initialValue = categories.find(
+    (category) => category.slug?.current === slug,
+  )?._id;
+
+  const [value, setValue] = useState<string>(initialValue!);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -38,12 +43,12 @@ export function CategorySelectorComponent({
           variant={"outline"}
           role="combobox"
           aria-expanded={open}
-          className="w-full max-w-full relative flex justify-center sm:justify-start sm:flex-none items-center space-x-2 bg-blue-500 hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className=" min-w-28 max-w-full relative flex justify-between sm:flex-none items-center space-x-2 bg-blue-500 hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline truncate"
         >
           {value
             ? categories.find((category) => category._id === value)?.title
-            : "Filter by category"}
-          <ChevronsUpDown className="w-4 h-4 ml-2 shrink-0" />
+            : "Filtrar"}
+          <ChevronsUpDown className="w-4 h-4 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
@@ -64,6 +69,7 @@ export function CategorySelectorComponent({
                   setOpen(false);
                 }
               }
+              e.stopPropagation();
             }}
           />
           <CommandList>
@@ -74,7 +80,7 @@ export function CategorySelectorComponent({
                   key={category._id}
                   value={category.title}
                   onSelect={() => {
-                    setValue(value === category._id ? "" : category._id!);
+                    setValue(category._id!);
                     router.push(`/categories/${category.slug?.current}`);
                     setOpen(false);
                   }}

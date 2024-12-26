@@ -67,7 +67,7 @@ export default function RootLayout({
           <main>
             <HeaderDiscount />
             <Header />
-            <SliderImages />
+
             {children}
           </main>
           <SanityLive />

@@ -119,7 +119,7 @@ const Header = (): ReactElement => {
               <div className="flex items-center space-x-2">
                 <UserButton />
                 <div className="hidden sm:block text-xs">
-                  <p className="text-gray-400"> Welcome Back</p>
+                  <p className="text-gray-400">Bienvenido de nuevo</p>
                   <p className="font-bold">{user.fullName}</p>
                 </div>
               </div>

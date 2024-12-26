@@ -32,9 +32,9 @@ const BasketPage: FC = () => {
   if (getGroupedItems().length === 0) {
     return (
       <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
-        <h1 className="text-2xl font-bold mb-6">Your basket is empty</h1>
+        <h1 className="text-2xl font-bold mb-6">Tu carrito esta vacio</h1>
         <p className="text-gray-600 text-lg">
-          Start adding some products to your basket
+          Comienza a añadir algunos productos a tu carrito
         </p>
       </div>
     );
@@ -54,7 +54,7 @@ const BasketPage: FC = () => {
       };
 
       const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
-      console.log("Checkout URL:", checkoutUrl);
+
       if (checkoutUrl) {
         window.location.href = checkoutUrl;
       }

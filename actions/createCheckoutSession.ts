@@ -20,8 +20,6 @@ export async function createCheckoutSession(
   items: BasketItem[],
   metadata: Metadata,
 ) {
-  console.log("Creating checkout session...", items, metadata);
-
   try {
     //    check if any grouped items dont have a price
     const itemsWithoutPrice = items.filter((item) => !item.product.price);

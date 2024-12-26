@@ -4,7 +4,6 @@ import type { Product } from "@/sanity.types";
 import { AnimatePresence, motion } from "framer-motion";
 import { FC, ReactElement } from "react";
 import ProductCard from "./ProductCard";
-import ProductThumb from "./ProductThumb";
 
 interface ProductGridProps {
   products: Product[];
@@ -12,7 +11,7 @@ interface ProductGridProps {
 
 const ProductGrid: FC<ProductGridProps> = ({ products }): ReactElement => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 mt-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
       {products.map((product) => (
         <AnimatePresence key={product._id}>
           <motion.div
