@@ -38,7 +38,7 @@ const ImageSlider = ({
     <picture>
       <source media="(max-width: 767px)" srcSet={mobile} />
       <source media="(min-width: 768px)" srcSet={desktop} />
-      <Image {...rest} className="object-contain" />
+      <Image {...rest} className="object-cover" />
     </picture>
   );
 };
