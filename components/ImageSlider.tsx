@@ -30,7 +30,7 @@ const ImageSlider = ({
     ...common,
     src: srcDesktop,
     width: 1980,
-    height: 1080,
+    height: 800,
     quality: 100,
   });
 
@@ -38,7 +38,7 @@ const ImageSlider = ({
     <picture>
       <source media="(max-width: 767px)" srcSet={mobile} />
       <source media="(min-width: 768px)" srcSet={desktop} />
-      <Image {...rest} />
+      <Image {...rest} className="object-contain" />
     </picture>
   );
 };
