@@ -3,7 +3,7 @@ import { getActiveSaleByCouponCode } from "@/sanity/lib/sales/getActiveSaleByCou
 import { ReactElement } from "react";
 
 const HeaderDiscount = async (): Promise<ReactElement | null> => {
-  const sale = await getActiveSaleByCouponCode(COUPON_CODE.BFRIDAY2024);
+  const sale = await getActiveSaleByCouponCode(COUPON_CODE.CERDOS25);
   if (!sale) return null;
 
   return (

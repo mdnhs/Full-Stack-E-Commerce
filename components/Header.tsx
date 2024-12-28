@@ -107,7 +107,7 @@ const Header = (): ReactElement => {
           <ClerkLoaded>
             <SignedIn>
               <Link
-                href={"/basket"}
+                href={"/orders"}
                 className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-1 sm:space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-1.5 sm:px-4 rounded "
               >
                 <PackageIcon className="w-6 h-6" />
