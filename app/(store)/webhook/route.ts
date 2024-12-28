@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
       const order = await createOrderInSanity(session);
       console.log("Order created in sanity:", order);
     } catch (error) {
+      console.log("Error processing checkout session:", error);
       return NextResponse.json(
         { error: "Error processing checkout session" },
         { status: 500 },
