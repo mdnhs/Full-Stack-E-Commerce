@@ -23,7 +23,7 @@ const ProductPage = async ({
     <div className="container mx-auto px-4 py-8 mt-6">
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-7xl gap-8">
         <div
-          className={`relative aspect-square max-w-xl overflow-hidden rounded-lg shadow-sm ${isOutOfStock ? "opacity-50" : ""}`}
+          className={`relative h-[680px] max-w-xl overflow-hidden rounded-lg ${isOutOfStock ? "opacity-50" : ""}`}
         >
           {product.image && (
             <Image
@@ -32,7 +32,7 @@ const ProductPage = async ({
               priority
               quality={100}
               fill
-              className="object-contain transition-transform duration-500  hover:scale-[1.035]"
+              className="object-contain size-full"
             />
           )}
           {isOutOfStock && (

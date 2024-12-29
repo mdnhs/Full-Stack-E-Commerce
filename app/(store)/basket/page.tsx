@@ -75,7 +75,7 @@ const BasketPage: FC = () => {
         <div className="flex-grow">
           {getGroupedItems()?.map((item) => (
             <div
-              key={item.product._id}
+              key={item.product._id + item.product._createdAt}
               className=" p-4 first:border-t border-b hover:bg-gray-100/55 hover:transition-colors flex items-center justify-between"
             >
               <div

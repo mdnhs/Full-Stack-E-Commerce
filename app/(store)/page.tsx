@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <div className="bg-gray-100">
       <SliderImages />
-      <div className="flex flex-col items-center justify-start w-full min-h-screen bg-gray-100 p-4 pb-6 container mx-auto ">
+      <div className="flex flex-col w-full  max-w-[1650px]  items-center justify-start min-h-screen mx-auto p-4 pb-6">
         <ProductsView products={products} categories={categories} />
       </div>
     </div>

@@ -21,10 +21,10 @@ const Orders = async ({}): Promise<ReactElement> => {
           <div className="text-center text-gray-600"> No tienes pedidos </div>
         ) : (
           <div className="space-y-6 sm:space-y-8">
-            {orders.map((order) => (
+            {orders.map((order, index) => (
               <div
                 className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden "
-                key={order.orderNumber}
+                key={`${order.orderNumber}-${index}`}
               >
                 <div className="p-4 sm:p-6 border-b border-gray-200">
                   <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4">

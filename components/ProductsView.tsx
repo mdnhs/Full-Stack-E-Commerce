@@ -21,7 +21,7 @@ const ProductsView: FC<ProductsViewProps> = ({
       </div>
 
       {/* Products */}
-      <div className="flex-1">
+      <div className="flex-1 size-full">
         {products.length > 0 ? (
           <ProductGrid products={products} />
         ) : (
