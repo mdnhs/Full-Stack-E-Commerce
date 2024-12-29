@@ -1,1 +1,0 @@
-bun x --no-install commitlint --edit "$1"
