@@ -33,7 +33,7 @@ const Header = (): ReactElement => {
 
   if (!isClient) {
     return (
-      <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 pb-2 pt-6">
+      <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 py-6">
         <div className="flex w-full flex-wrap justify-between items-center">
           {/* Logo Skeleton */}
           <Skeleton className="h-8 w-24" />
@@ -63,7 +63,7 @@ const Header = (): ReactElement => {
   };
 
   return (
-    <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 pb-2 pt-6">
+    <header className="flex flex-wrap justify-between items-center px-4 md:px-10 2xl:px-16 py-6">
       {/* Top row */}
       <div className="flex w-full flex-wrap justify-between items-center">
         <Link

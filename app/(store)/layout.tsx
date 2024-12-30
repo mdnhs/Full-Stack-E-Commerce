@@ -1,13 +1,13 @@
-import Header from "@/components/Header";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/header/Header";
+import HeaderDiscount from "@/components/HeaderDiscount";
 import { SanityLive } from "@/sanity/lib/live";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import "../globals.css";
-import HeaderDiscount from "@/components/HeaderDiscount";
-import SliderImages from "@/components/SliderImages";
-import { draftMode } from "next/headers";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Ropa online - Tienda de ropa para hombre y mujer",
@@ -74,9 +74,9 @@ export default async function RootLayout({
             </>
           )}
           <main>
-            <HeaderDiscount />
             <Header />
             {children}
+            <Footer />
           </main>
           <SanityLive />
         </body>

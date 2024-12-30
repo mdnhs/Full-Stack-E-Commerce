@@ -41,7 +41,7 @@ const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
           </div>
         )}
 
-        <div className="hidden translate-y-20 group-hover:translate-y-0 opacity-0 group-hover:block group-hover:opacity-100 transition-all duration-1000  absolute bottom-5 translate-x-1/2 right-1/2 z-10 ">
+        <div className="translate-y-20 group-hover:translate-y-0 opacity-0 group-hover: group-hover:opacity-100 transition-all duration-500  absolute bottom-5 translate-x-1/2 right-1/2 z-10 ">
           <Button className="rounded-full text-sm  font-medium px-5 py-5">
             Vista Rápida
           </Button>

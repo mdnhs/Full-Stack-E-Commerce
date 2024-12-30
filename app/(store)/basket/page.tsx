@@ -67,7 +67,7 @@ const BasketPage: FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-6xl">
+    <div className="container mx-auto p-4 max-w-6xl mb-32 md:mb-48">
       <h1 className="text-sm font-medium mb-4">
         Envíos gratis por pedidos superiores a $800.00
       </h1>

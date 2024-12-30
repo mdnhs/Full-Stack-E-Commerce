@@ -1,8 +1,8 @@
-import { CategorySelectorComponent } from "@/components/ui/category-selector";
 import { type Category, type Product } from "@/sanity.types";
-import { PackageSearchIcon } from "lucide-react";
 import { FC, ReactElement } from "react";
-import ProductGrid from "./ProductGrid";
+import { CategoryFilter } from "./CategorySelector";
+import NoProductsFound from "@/components/NoProductsFound";
+import ProductGrid from "@/components/ProductGrid";
 
 interface ProductsViewProps {
   products: Product[];
@@ -15,9 +15,9 @@ const ProductsView: FC<ProductsViewProps> = ({
 }): ReactElement => {
   return (
     <div>
-      {/* Categories */}
-      <div className="w-full sm:w-[200px]">
-        <CategorySelectorComponent categories={categories} />
+      <div className="w-full sm:w-[300px]">
+        {/* <CategorySelectorComponent categories={categories} /> */}
+        <CategoryFilter categories={categories} />
       </div>
 
       {/* Products */}
@@ -25,15 +25,8 @@ const ProductsView: FC<ProductsViewProps> = ({
         {products.length > 0 ? (
           <ProductGrid products={products} />
         ) : (
-          <div className="flex flex-col items-center justify-center gap-3.5 min-h-[50dvh]">
-            <PackageSearchIcon className="size-16 text-gray-600" />
-            <div className="text-center text-gray-600 text-lg">
-              No se encontraron productos
-            </div>
-          </div>
+          <NoProductsFound />
         )}
-
-        <hr className="w-1/2 sm:w-3/4 mt-4 mx-auto" />
       </div>
     </div>
   );

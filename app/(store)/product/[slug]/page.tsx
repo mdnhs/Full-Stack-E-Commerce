@@ -20,7 +20,7 @@ const ProductPage = async ({
   const isOutOfStock = product.stock != null && product.stock <= 0;
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-6">
+    <div className="container mx-auto px-4 py-8 mt-6 mb-32 md:mb-44">
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-7xl gap-8">
         <div
           className={`relative h-[680px] max-w-xl overflow-hidden rounded-lg ${isOutOfStock ? "opacity-50" : ""}`}
