@@ -52,7 +52,7 @@ const BasketPage: FC = () => {
           href="/"
           className="group relative inline-flex items-center justify-center px-6 py-2 overflow-hidden font-medium transition duration-300 ease-out border border-primary rounded-full shadow-md text-xl"
         >
-          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-primary group-hover:translate-x-0 ease">
+          <span className=" hidden absolute inset-0 md:flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-primary group-hover:translate-x-0 ease">
             <Home className="w-6 h-6" />
           </span>
           <span className="text-sm md:text-base absolute flex items-center justify-center w-full h-full text-primary transition-all duration-300 transform group-hover:translate-x-full ease">

@@ -69,7 +69,9 @@ const ProductThumb = ({ product }: ProductThumbProps): ReactElement => {
   );
 };
 
-ProductThumb.Skeleton = () => {
+ProductThumb.displayName = "ProductThumb";
+
+const ProductThumbSkeleton: FC = (): ReactElement => {
   return (
     <Link
       href="#"
@@ -96,5 +98,8 @@ ProductThumb.Skeleton = () => {
     </Link>
   );
 };
+
+ProductThumb.Skeleton = ProductThumbSkeleton;
+ProductThumb.Skeleton.displayName = "ProductThumbSkeleton";
 
 export default ProductThumb;
