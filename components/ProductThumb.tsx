@@ -3,15 +3,18 @@ import { imageUrl } from "@/lib/imageUrl";
 import { Product } from "@/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, ReactElement } from "react";
+import { FC, type ReactElement } from "react";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
+
+export const dynamic = "force-static";
+export const revalidate = 900;
 
 interface ProductThumbProps {
-  // Prop types here
   product: Product;
 }
 
-const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
+const ProductThumb = ({ product }: ProductThumbProps): ReactElement => {
   const isOutOfStock = product.stock != null && product.stock <= 0;
   // descuento del 40%
   const discount = product.price! * 0.4;
@@ -19,7 +22,7 @@ const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
   return (
     <Link
       href={`/product/${product.slug?.current}`}
-      className={`group min-w-[400px] min-h-[400px] md:min-h-[680px] flex flex-col rounded border border-gray-200/30  shadow-sm hover:shadow-md size-full transition-all duration-700  overflow-hidden ${
+      className={`group w-full min-w-[350px]  h-[500px] md:min-h-[680px] flex flex-col rounded border border-gray-200/30  shadow-sm hover:shadow-md size-full transition-all duration-700  overflow-hidden ${
         isOutOfStock ? "opacity-50" : ""
       }`}
     >
@@ -60,6 +63,34 @@ const ProductThumb: FC<ProductThumbProps> = ({ product }): ReactElement => {
               {formatCurrency(product.price!)}
             </span>
           </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+ProductThumb.Skeleton = () => {
+  return (
+    <Link
+      href="#"
+      className="group min-w-[400px] h-[500px] md:min-h-[680px] flex flex-col rounded border border-gray-200/30 shadow-sm size-full transition-all duration-700 overflow-hidden opacity-50"
+    >
+      <div className="relative size-full overflow-hidden">
+        <Skeleton className="object-cover w-full h-[60%] bg-gray-200" />
+
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <Skeleton className="w-32 h-8 bg-gray-300" />
+        </div>
+
+        <div className="translate-y-20 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 absolute bottom-5 translate-x-1/2 right-1/2 z-10">
+          <Skeleton className="w-24 h-10 bg-gray-300 rounded-full" />
+        </div>
+      </div>
+      <div className="p-6">
+        <Skeleton className="h-6 w-3/4 bg-gray-200 mb-2" />
+        <div className="flex items-center mt-1 gap-2">
+          <Skeleton className="h-6 w-1/3 bg-gray-200" />
+          <Skeleton className="h-6 w-1/4 bg-gray-300" />
         </div>
       </div>
     </Link>

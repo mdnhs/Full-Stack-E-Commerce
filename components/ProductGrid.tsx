@@ -2,7 +2,7 @@
 
 import type { Product } from "@/sanity.types";
 import { AnimatePresence, motion } from "framer-motion";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, Suspense } from "react";
 import ProductThumb from "./ProductThumb";
 
 interface ProductGridProps {
@@ -11,7 +11,7 @@ interface ProductGridProps {
 
 const ProductGrid: FC<ProductGridProps> = ({ products }): ReactElement => {
   return (
-    <div className="grid min-w-max size-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mt-10 mb-32">
+    <div className="grid min-w-max size-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-10 mb-32">
       {products.map((product, index) => (
         <AnimatePresence key={`${product._id}-${index}`}>
           <motion.div
@@ -21,7 +21,9 @@ const ProductGrid: FC<ProductGridProps> = ({ products }): ReactElement => {
             exit={{ opacity: 0 }}
             className="flex justify-center"
           >
-            <ProductThumb product={product} />
+            <Suspense fallback={<ProductThumb.Skeleton />}>
+              <ProductThumb product={product} />
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       ))}

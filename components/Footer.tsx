@@ -1,12 +1,7 @@
-import Link from "next/link";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowUp,
-  Facebook,
-  Instagram,
-  TwitterIcon as TikTok,
-} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Facebook, Instagram, TwitterIcon as TikTok } from "lucide-react";
+import Link from "next/link";
 import ButtonScrollTop from "./ButtonScrollTop";
 
 export function Footer() {

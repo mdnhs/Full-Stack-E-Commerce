@@ -1,9 +1,13 @@
-import AddToBasketButton from "@/components/AddToBasketButton";
+import AddToButton from "@/components/AddToButtons";
 import { imageUrl } from "@/lib/imageUrl";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+
+// static route
+export const dynamic = "force-static";
+export const revalidate = 240;
 
 const ProductPage = async ({
   params,
@@ -18,23 +22,25 @@ const ProductPage = async ({
   }
 
   const isOutOfStock = product.stock != null && product.stock <= 0;
+  const imageSrc = imageUrl(product.image!).url();
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-6 mb-32 md:mb-44">
+    <div className="container mx-auto px-4 py-8 md:mt-6  md:mb-44 ">
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-7xl gap-8">
         <div
-          className={`relative h-[680px] max-w-xl overflow-hidden rounded-lg ${isOutOfStock ? "opacity-50" : ""}`}
+          className={`relative h-[440px] md:h-[680px] max-w-xl overflow-hidden rounded-lg ${isOutOfStock ? "opacity-50" : ""}`}
         >
-          {product.image && (
-            <Image
-              src={imageUrl(product.image).url()}
-              alt={product.name || "Product Image"}
-              priority
-              quality={100}
-              fill
-              className="object-contain size-full"
-            />
-          )}
+          <Image
+            src={imageSrc}
+            alt={product.name || "Product Image"}
+            priority
+            quality={90}
+            placeholder="blur"
+            blurDataURL={imageSrc}
+            fill
+            className="object-cover md:object-contain size-full"
+          />
+
           {isOutOfStock && (
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
               <span className="text-white text-lg font-bold">
@@ -57,7 +63,7 @@ const ProductPage = async ({
             </div>
           </div>
           <div className="mt-6">
-            <AddToBasketButton product={product} disabled={isOutOfStock} />
+            <AddToButton product={product} />
           </div>
         </div>
       </div>

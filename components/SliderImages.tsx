@@ -38,7 +38,7 @@ const SliderImages = ({}): ReactElement => {
         {ImagesSlider.map(({ id, ...ImageSliderProps }) => (
           <CarouselItem
             key={`${id}-${ImageSliderProps.srcDesktop}`}
-            className="relative w-full h-80 sm:h-52 md:h-64 lg:h-72 xl:h-[420px]  2xl:h-[500px] "
+            className="relative w-full h-[360px] md:h-64 lg:h-72 xl:h-[420px]  2xl:h-[500px] "
           >
             <ImageSlider id={id} {...ImageSliderProps} />
           </CarouselItem>

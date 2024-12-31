@@ -15,7 +15,7 @@ const ProductsView: FC<ProductsViewProps> = ({
 }): ReactElement => {
   return (
     <div>
-      <div className="w-full sm:w-[300px]">
+      <div className="w-full sm:w-[300px]  pl-4 pt-4">
         {/* <CategorySelectorComponent categories={categories} /> */}
         <CategoryFilter categories={categories} />
       </div>

@@ -1,9 +1,0 @@
-https://www.calvinklein.cl/mujer/ropa
-
-https://fashionspark.com/
-
-clonar la ui!
-https://vercel.com/templates/next.js/medusa
-
-
-bun x --no-install commitlint --edit "$1"

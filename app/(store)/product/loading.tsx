@@ -1,10 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
+export const dynamic = "force-static";
 
 const LoadingProductPage = () => {
   return (
     <div className="container mx-auto px-4 py-8 mt-6 mb-32 md:mb-44">
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-7xl gap-8">
-        <div className="relative h-[680px] max-w-xl overflow-hidden rounded-lg">
+        <div className="relative h-[440px] md:h-[680px] max-w-xl overflow-hidden rounded-lg">
           <Skeleton className="h-full w-full" />
         </div>
         <div className="flex flex-col justify-between">

@@ -17,7 +17,7 @@ const CategoryPage: FC<CategoryPageProps> = async ({
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-gray-100">
       <div className="w-full ">
-        <div className="container mt-24 mx-auto">
+        <div className="container mt-8 md:mt-24 mx-auto px-4 md:px-0">
           <ProductsView products={products} categories={categories} />
         </div>
       </div>

@@ -11,6 +11,7 @@ import {
 import type { Category } from "@/sanity.types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 
 interface CategorySelectorProps {
   categories: Category[];
@@ -30,28 +31,22 @@ export function CategoryFilter({ categories }: CategorySelectorProps) {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button
-          className={cn(
-            "group flex items-center gap-3 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
-            "bg-black text-white hover:bg-zinc-800",
-            "border border-zinc-800 hover:border-zinc-700",
-            "focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2",
-            isOpen && "bg-zinc-800 border-zinc-700",
-          )}
-        >
-          {selectedCategory !== undefined && <span>Filtrar por:</span>}
-          <div className="flex items-center gap-2">
-            <span className="text-white group-hover:text-white transition-colors">
-              {selectedCategory?.title || "Todas las categorías"}
-            </span>
-            <ChevronDown
-              className={cn(
-                "w-4 h-4 text-zinc-400 group-hover:text-white transition-all duration-200",
-                isOpen && "transform rotate-180",
-              )}
-            />
+        <Button variant={"outline"} asChild>
+          <div>
+            {selectedCategory !== undefined && <span>Filtrar por:</span>}
+            <div className="flex items-center gap-2">
+              <span className="text-black group-hover:text-white text-xs md:text-sm transition-colors">
+                {selectedCategory?.title || "Filtros"}
+              </span>
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 text-zinc-400 group-hover:text-white transition-all duration-200",
+                  isOpen && "transform rotate-180",
+                )}
+              />
+            </div>
           </div>
-        </button>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-64 max-h-[400px] overflow-auto rounded-lg border border-zinc-200 bg-white p-1 shadow-lg"

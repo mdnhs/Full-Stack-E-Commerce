@@ -20,7 +20,7 @@ const ImageSlider = ({
     ...common,
     src: srcMobile,
     width: 800,
-    height: 400,
+    height: 500,
     quality: 100,
   });
 
@@ -38,7 +38,11 @@ const ImageSlider = ({
     <picture>
       <source media="(max-width: 767px)" srcSet={mobile} />
       <source media="(min-width: 768px)" srcSet={desktop} />
-      <Image {...rest} className="object-cover" />
+      <Image
+        {...rest}
+        className=" object-contain md:object-cover"
+        alt={`Slider image ${id}`}
+      />
     </picture>
   );
 };

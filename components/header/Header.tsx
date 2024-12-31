@@ -1,12 +1,18 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { AnnouncementBanner } from "./announcement-banner";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Input } from "@/components/ui/input";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import useBasketStore from "@/store";
+import { Menu, Search, ShoppingCart, X } from "lucide-react";
 import Form from "next/form";
+import Link from "next/link";
+import { useState } from "react";
+import { AnnouncementBanner } from "./announcement-banner";
 import UserProfileComponent from "./UserProfile";
 
 const navigation = [
@@ -19,6 +25,9 @@ const navigation = [
 
 export function Header() {
   const [showSearch, setShowSearch] = useState(false);
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0),
+  );
 
   return (
     <header className="sticky top-0 z-50 bg-white">
@@ -28,6 +37,7 @@ export function Header() {
           <div className="flex h-16 items-center justify-between gap-4">
             {/* Mobile menu */}
             <Sheet>
+              <SheetTitle className="sr-only">Menú</SheetTitle>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="lg:hidden">
                   <Menu className="h-6 w-6" />
@@ -71,7 +81,7 @@ export function Header() {
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center md:gap-2">
               <Button
                 variant="ghost"
                 size="icon"
@@ -87,12 +97,13 @@ export function Header() {
               </Button>
 
               <UserProfileComponent />
+
               <Button variant="ghost" size="icon" className="relative">
                 <Link href={"/basket"}>
                   <ShoppingCart className="h-5 w-5" />
                   <span className="sr-only">Carrito</span>
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-black text-white text-xs flex items-center justify-center">
-                    2
+                    {itemCount}
                   </span>
                 </Link>
               </Button>

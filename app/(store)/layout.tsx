@@ -73,7 +73,7 @@ export default async function RootLayout({
               <VisualEditing />
             </>
           )}
-          <main>
+          <main className="overflow-x-hidden">
             <Header />
             {children}
             <Footer />

@@ -8,7 +8,7 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import { User } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 
 const UserProfileComponent = ({}) => {
@@ -21,21 +21,23 @@ const UserProfileComponent = ({}) => {
     return <Skeleton className="size-9 opacity-10" />;
   }
   return (
-    <div className="size-9 flex items-center justify-center ">
-      <ClerkLoaded>
-        {user.isSignedIn ? (
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        ) : (
-          <SignInButton mode="modal">
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Cuenta</span>
-            </Button>
-          </SignInButton>
-        )}
-      </ClerkLoaded>
+    <div className="flex items-center justify-center ">
+      <Suspense fallback={<Skeleton className="size-9 opacity-10" />}>
+        <ClerkLoaded>
+          {user.isSignedIn ? (
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          ) : (
+            <SignInButton mode="modal">
+              <Button variant="ghost" size="icon" className="flex">
+                <User className="size-4" />
+                <span className="sr-only">Cuenta</span>
+              </Button>
+            </SignInButton>
+          )}
+        </ClerkLoaded>
+      </Suspense>
     </div>
   );
 };

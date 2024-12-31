@@ -22,7 +22,7 @@ A modern and robust e-commerce application built with Next.js 15, TypeScript, Ta
 
 ### Frontend
 
-- Next.js 15.0.3
+- Next.js 15.1.0
 - React 19
 - TypeScript
 - Tailwind CSS

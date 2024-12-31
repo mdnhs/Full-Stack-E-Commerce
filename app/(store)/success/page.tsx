@@ -32,7 +32,6 @@ export default function PaymentSuccess() {
   }, [orderNumber, clearBasket]);
 
   const [isClient, setIsClient] = useState<boolean>(false);
-
   useEffect(() => setIsClient(true), []);
 
   if (!isClient) {

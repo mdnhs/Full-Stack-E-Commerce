@@ -10,8 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { imageUrl } from "@/lib/imageUrl";
 import useBasketStore from "@/store";
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
-import { InfoIcon } from "lucide-react";
-
+import { Home, InfoIcon, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
@@ -26,6 +26,9 @@ const BasketPage: FC = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const totalPrice = useBasketStore.getState().getTotalPrice().toFixed(2);
+  const totalTaxes = (+totalPrice * 0.2).toFixed(2);
+
   useEffect(() => setIsClient(true), []);
 
   if (!isClient) {
@@ -34,11 +37,29 @@ const BasketPage: FC = () => {
 
   if (getGroupedItems().length === 0) {
     return (
-      <div className="container mx-auto p-4 flex flex-col items-center h-auto justify-center ">
-        <h1 className="text-2xl font-bold mb-6">Tu carrito esta vacio</h1>
-        <p className="text-gray-600 text-lg">
-          Comienza a añadir algunos productos a tu carrito
+      <div className="flex flex-col items-center justify-center min-h-[50vh] px-4 py-8 bg-background text-foreground">
+        <div className="text-primary mb-6">
+          <ShoppingCart size={80} strokeWidth={1.5} />
+        </div>
+        <h2 className="text-3xl font-bold mb-3 text-center">
+          Tu carrito está vacío
+        </h2>
+        <p className="text-muted-foreground mb-8 text-center max-w-md text-pretty">
+          Parece que aún no has añadido ningún producto a tu carrito. ¡Empieza a
+          comprar para llenarlo!
         </p>
+        <Link
+          href="/"
+          className="group relative inline-flex items-center justify-center px-6 py-2 overflow-hidden font-medium transition duration-300 ease-out border border-primary rounded-full shadow-md text-xl"
+        >
+          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-primary group-hover:translate-x-0 ease">
+            <Home className="w-6 h-6" />
+          </span>
+          <span className="text-sm md:text-base absolute flex items-center justify-center w-full h-full text-primary transition-all duration-300 transform group-hover:translate-x-full ease">
+            Ir a la página inicial
+          </span>
+          <span className="relative invisible">Ir a la página inicial</span>
+        </Link>
       </div>
     );
   }
@@ -67,7 +88,7 @@ const BasketPage: FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-6xl mb-32 md:mb-48">
+    <div className="container mx-auto p-4 max-w-6xl  md:mb-48">
       <h1 className="text-sm font-medium mb-4">
         Envíos gratis por pedidos superiores a $800.00
       </h1>
@@ -115,18 +136,16 @@ const BasketPage: FC = () => {
           ))}
         </div>
 
-        <div className="w-full lg:w-80 lg:sticky lg:top-4  bg-white p-6  rounded order-first lg:order-last fixed bottom-0 left-0 lg:left-auto">
+        <div className="w-full lg:w-80 lg:sticky lg:top-4  bg-white p-6  rounded order-last lg:order-last sticky bottom-0 left-0 lg:left-auto">
           <h3 className="text-xl font-medium">Detalles del pedido</h3>
           <div className="mt-4  flex flex-col gap-2">
             <Separator className="my-4" />
             <div className="flex justify-between text-gray-600 text-sm">
               <p className="flex items-center">
                 <span>Subtotal</span>
-                <InfoIcon className="size-5 text-white fill-gray-400" />
+                <InfoIcon className="size-5 text-white fill-gray-300" />
               </p>
-              <span>
-                ${useBasketStore.getState().getTotalPrice().toFixed(2)}
-              </span>
+              <span>${totalPrice}</span>
             </div>
             <p className="flex justify-between text-gray-600 text-sm">
               <span>Envío gratuito</span>
@@ -135,17 +154,15 @@ const BasketPage: FC = () => {
             <div className="flex justify-between text-gray-600 text-sm ">
               <p>
                 <span>Taxes</span>
-                <span className="text-gray-400 ml-1">(Incluido)</span>
+                <span className="text-gray-400 text-sm ml-1">(Incluido)</span>
               </p>
-              <span>$0.00</span>
+              <span>{totalTaxes}</span>
             </div>
             <Separator className="mt-4" />
             <div>
               <p className="flex justify-between text-lg font-medium py-2">
                 <span>Total:</span>
-                <span className="font-semibold">
-                  ${useBasketStore.getState().getTotalPrice().toFixed(2)}
-                </span>
+                <span className="font-semibold">${totalPrice}</span>
               </p>
             </div>
             <Separator className="my-3" />
@@ -162,13 +179,14 @@ const BasketPage: FC = () => {
             </Button>
           ) : (
             <SignInButton mode="modal">
-              <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+              <Button className="mt-4 py-5 w-full" variant="default">
                 Sign in to checkout
-              </button>
+              </Button>
             </SignInButton>
           )}
         </div>
-        <div className="h-64 lg:h-0" />
+
+        {getGroupedItems().length < 3 && <div className="h-20 lg:h-0" />}
       </div>
     </div>
   );
