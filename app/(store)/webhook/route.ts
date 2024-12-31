@@ -5,12 +5,12 @@ import useBasketStore from "@/store";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+const { clearBasket } = useBasketStore.getState();
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const headersList = await headers();
   const sig = headersList.get("stripe-signature");
-  const { clearBasket } = useBasketStore();
 
   if (!sig) {
     return NextResponse.json({ error: "No signature found" }, { status: 400 });
