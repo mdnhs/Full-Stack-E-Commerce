@@ -1,6 +1,7 @@
 import type { Metadata } from "@/actions/createCheckoutSession";
 import stripe from "@/lib/stripe";
 import { backendClient } from "@/sanity/lib/backendClient";
+import useBasketStore from "@/store";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -9,6 +10,7 @@ export async function POST(req: NextRequest) {
   const body = await req.text();
   const headersList = await headers();
   const sig = headersList.get("stripe-signature");
+  const { clearBasket } = useBasketStore();
 
   if (!sig) {
     return NextResponse.json({ error: "No signature found" }, { status: 400 });
@@ -43,6 +45,9 @@ export async function POST(req: NextRequest) {
     try {
       const order = await createOrderInSanity(session);
       console.log("Order created in sanity:", order);
+      // Vaciar el carrito y redireccionar a la ruta raiz
+      clearBasket();
+      return NextResponse.redirect("/");
     } catch (error) {
       console.log("Error processing checkout session:", error);
       return NextResponse.json(

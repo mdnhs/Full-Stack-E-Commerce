@@ -98,15 +98,15 @@ export function Header() {
 
               <UserProfileComponent />
 
-              <Button variant="ghost" size="icon" className="relative">
-                <Link href={"/basket"}>
+              <Link href={"/basket"}>
+                <Button variant="ghost" size="icon" className="relative">
                   <ShoppingCart className="h-5 w-5" />
                   <span className="sr-only">Carrito</span>
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-black text-white text-xs flex items-center justify-center">
                     {itemCount}
                   </span>
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
 
