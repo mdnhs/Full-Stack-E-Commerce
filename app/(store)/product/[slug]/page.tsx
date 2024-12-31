@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 
 // static route
 export const dynamic = "force-static";
-export const revalidate = 240;
+export const revalidate = 800;
 
 const ProductPage = async ({
   params,
@@ -30,16 +30,20 @@ const ProductPage = async ({
         <div
           className={`relative h-[440px] md:h-[680px] max-w-xl overflow-hidden rounded-lg ${isOutOfStock ? "opacity-50" : ""}`}
         >
-          <Image
-            src={imageSrc}
-            alt={product.name || "Product Image"}
-            priority
-            quality={90}
-            placeholder="blur"
-            blurDataURL={imageSrc}
-            fill
-            className="object-cover md:object-contain size-full"
-          />
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={product.name || "Product Image"}
+              priority
+              quality={80}
+              placeholder="blur"
+              blurDataURL={imageSrc}
+              fill
+              className="object-cover md:object-contain size-full"
+            />
+          ) : (
+            <p>No se ha encontrado la imagen</p>
+          )}
 
           {isOutOfStock && (
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">

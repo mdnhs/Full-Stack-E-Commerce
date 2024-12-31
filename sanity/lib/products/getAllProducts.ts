@@ -8,7 +8,6 @@ export const getAllProducts = async () => {
   try {
     // use nasityFetch to send the query
     const products = await sanityFetch({ query: ALL_PRODUCTS_QUERY });
-
     // Returns the list of products, or an empty array
     return products.data || [];
   } catch (error) {

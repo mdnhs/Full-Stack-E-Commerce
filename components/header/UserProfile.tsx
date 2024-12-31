@@ -21,7 +21,7 @@ const UserProfileComponent = ({}) => {
     return <Skeleton className="size-9 opacity-10" />;
   }
   return (
-    <div className="flex items-center justify-center ">
+    <div className="flex items-center justify-center size-9 ">
       <Suspense fallback={<Skeleton className="size-9 opacity-10" />}>
         <ClerkLoaded>
           {user.isSignedIn ? (

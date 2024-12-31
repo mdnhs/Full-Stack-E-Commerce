@@ -1,11 +1,11 @@
-import { DisableDraftMode } from "@/components/DisableDraftMode";
+// import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import { SanityLive } from "@/sanity/lib/live";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { VisualEditing } from "next-sanity";
-import { draftMode } from "next/headers";
+// import { VisualEditing } from "next-sanity";
+// import { draftMode } from "next/headers";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -66,12 +66,12 @@ export default async function RootLayout({
     <ClerkProvider dynamic>
       <html lang="es">
         <body suppressHydrationWarning>
-          {(await draftMode()).isEnabled && (
+          {/* {(await draftMode()).isEnabled && (
             <>
               <DisableDraftMode />
               <VisualEditing />
             </>
-          )}
+          )} */}
           <main className="overflow-x-hidden">
             <Header />
             {children}
