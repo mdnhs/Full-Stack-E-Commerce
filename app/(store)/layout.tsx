@@ -1,7 +1,6 @@
 import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/header/Header";
-import HeaderDiscount from "@/components/HeaderDiscount";
 import { SanityLive } from "@/sanity/lib/live";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
     "trabajo",
     "deportiva",
   ],
-  authors: [{ name: "Tu nombre", url: "tu-dominio.com" }],
+  authors: [{ name: "Shoper", url: "https://shoper-store.vercel.app" }],
   openGraph: {
     title: "Ropa online - Tienda de ropa para hombre y mujer",
     description:
