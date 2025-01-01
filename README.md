@@ -1,6 +1,6 @@
 # Full-Stack E-Commerce Application
 
-![E-commerce Banner](./public/resource.png)
+![E-commerce Banner](./public/og-img.png)
 
 ## 🚀 Description
 
