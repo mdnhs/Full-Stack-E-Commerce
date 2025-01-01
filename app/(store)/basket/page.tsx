@@ -180,7 +180,7 @@ const BasketPage: FC = () => {
           ) : (
             <SignInButton mode="modal">
               <Button className="mt-4 py-5 w-full" variant="default">
-                Sign in to checkout
+                Inicia sesión para continuar
               </Button>
             </SignInButton>
           )}

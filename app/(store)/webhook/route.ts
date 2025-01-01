@@ -1,11 +1,9 @@
 import type { Metadata } from "@/actions/createCheckoutSession";
 import stripe from "@/lib/stripe";
 import { backendClient } from "@/sanity/lib/backendClient";
-import useBasketStore from "@/store";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-const { clearBasket } = useBasketStore.getState();
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -41,13 +39,8 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-
     try {
-      const order = await createOrderInSanity(session);
-      console.log("Order created in sanity:", order);
-      // Vaciar el carrito y redireccionar a la ruta raiz
-      clearBasket();
-      return NextResponse.redirect("/");
+      await createOrderInSanity(session);
     } catch (error) {
       console.log("Error processing checkout session:", error);
       return NextResponse.json(

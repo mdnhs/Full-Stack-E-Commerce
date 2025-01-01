@@ -8,15 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import useBasketStore from "@/store";
-import {
-  Calendar,
-  Check,
-  Clock,
-  CreditCard,
-  Download,
-  Loader,
-  Share2,
-} from "lucide-react";
+import { Check, CreditCard, Download, Loader, Share2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
