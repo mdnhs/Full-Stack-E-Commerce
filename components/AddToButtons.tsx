@@ -18,7 +18,7 @@ const AddToButton = ({ product }: AddToButtonProps): ReactElement => {
       <div className="flex flex-col gap-3">
         <button
           onClick={() => addItem(product)}
-          className="w-full bg-black text-white py-3 px-6 rounded-full hover:bg-gray-700 flex items-center justify-center gap-2 hover:scale-95 transition-all hover:shadow-lg"
+          className="w-full bg-gray-950 text-white py-3 px-6 rounded-full hover:bg-gray-950/85 flex items-center justify-center gap-2 hover:scale-95 transition-all hover:shadow-lg"
         >
           <ShoppingBag className="h-5 w-5" />
           Agregar al carrito
