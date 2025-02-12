@@ -6,8 +6,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const announcements = [
   {
     id: 1,
-    text: "Usa el código CERDOS25 para 25% de descuento",
-    highlight: "CERDOS25",
+    text: "Usa el código SHOPER para 25% de descuento",
+    highlight: "SHOPER25",
   },
   {
     id: 2,
