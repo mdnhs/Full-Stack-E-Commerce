@@ -11,7 +11,7 @@ interface ProductGridProps {
 
 const ProductGrid: FC<ProductGridProps> = ({ products }): ReactElement => {
   return (
-    <div className="grid min-w-max size-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-10 mb-32">
+    <div className="grid min-w-max size-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-5 mb-32">
       {products.map((product, index) => (
         <AnimatePresence key={`${product._id}-${index}`}>
           <motion.div

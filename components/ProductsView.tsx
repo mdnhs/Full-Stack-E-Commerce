@@ -3,6 +3,7 @@ import { FC, ReactElement } from "react";
 import { CategoryFilter } from "./CategorySelector";
 import NoProductsFound from "@/components/NoProductsFound";
 import ProductGrid from "@/components/ProductGrid";
+import { OrderBy } from "./OrderBy";
 
 interface ProductsViewProps {
   products: Product[];
@@ -15,8 +16,8 @@ const ProductsView: FC<ProductsViewProps> = ({
 }): ReactElement => {
   return (
     <div>
-      <div className="w-full sm:w-[300px]  pl-4 pt-4">
-        {/* <CategorySelectorComponent categories={categories} /> */}
+      <div className="w-full  flex flex-col md:flex-row items-end  pl-2 pt-4 md:justify-end ">
+        <OrderBy categories={categories} />
         <CategoryFilter categories={categories} />
       </div>
 
