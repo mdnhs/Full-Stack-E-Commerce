@@ -43,9 +43,45 @@ export const orderType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "phone",
+      title: "Customer Phone",
+      type: "string",
+    }),
+    defineField({
+      name: "address",
+      title: "Delivery Address",
+      type: "string",
+    }),
+    defineField({
+      name: "city",
+      title: "City",
+      type: "string",
+    }),
+    defineField({
+      name: "postalCode",
+      title: "Postal Code",
+      type: "string",
+    }),
+    defineField({
+      name: "notes",
+      title: "Order Notes",
+      type: "text",
+    }),
+    defineField({
       name: "stripePaymentIntentId",
       title: "Stripe Payment Intent ID",
       type: "string",
+    }),
+    defineField({
+      name: "paymentMethod",
+      title: "Payment Method",
+      type: "string",
+      options: {
+        list: [
+          { title: "Stripe", value: "stripe" },
+          { title: "Cash on Delivery", value: "cod" },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     }),
 
