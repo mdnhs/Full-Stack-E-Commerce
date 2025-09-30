@@ -41,3 +41,4 @@ next-env.d.ts
 wrapper.toml
 .vercel
 .env*.local
+.env
