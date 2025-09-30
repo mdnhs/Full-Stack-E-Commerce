@@ -3,16 +3,12 @@ import {
   createCheckoutSession,
   type Metadata,
 } from "@/actions/createCheckoutSession";
-import { createCODOrder, type CODMetadata } from "@/actions/createCODOrder";
 import AddToBasketButton from "@/components/AddToBasketButton";
-import CODForm from "@/components/CODForm";
 import Loader from "@/components/Loader";
-import PaymentMethodSelector from "@/components/PaymentMethodSelector";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { imageUrl } from "@/lib/imageUrl";
 import useBasketStore from "@/store";
-import type { PaymentMethod } from "@/types/payment";
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 import { Home, InfoIcon, ShoppingCart } from "lucide-react";
 import Link from "next/link";
@@ -20,22 +16,16 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
-const BasketPage: FC = () => {
-  const { getGroupedItems } = useBasketStore();
-  const { isSignedIn } = useAuth();
+const BasketPage: FC = () => import { Chrome as Home, Info as InfoIcon, ShoppingCart } from "lucide-react" isSignedIn } = useAuth();
   const { user } = useUser();
   const router = useRouter();
   const groupedItems = getGroupedItems();
 
   const [isClient, setIsClient] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('stripe');
-  const [showCODForm, setShowCODForm] = useState<boolean>(false);
 
   const totalPrice = useBasketStore.getState().getTotalPrice().toFixed(2);
-  const codFee = paymentMethod === 'cod' ? 2.00 : 0;
-  const totalWithCOD = (+totalPrice + codFee).toFixed(2);
-  const totalTaxes = (+totalWithCOD * 0.2).toFixed(2);
+  const totalTaxes = (+totalPrice * 0.2).toFixed(2);
 
   useEffect(() => setIsClient(true), []);
 
@@ -75,12 +65,6 @@ const BasketPage: FC = () => {
   const handleCheckout = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!isSignedIn) return;
-    
-    if (paymentMethod === 'cod') {
-      setShowCODForm(true);
-      return;
-    }
-    
     setIsLoading(true);
 
     try {
@@ -98,35 +82,6 @@ const BasketPage: FC = () => {
       }
     } catch (error) {
       console.log("Error checking out:", error);
-    }
-  };
-
-  const handleCODSubmit = async (codData: any) => {
-    if (!isSignedIn || !user) return;
-    
-    setIsLoading(true);
-    try {
-      const metadata: CODMetadata = {
-        orderNumber: crypto.randomUUID(),
-        customerName: user.fullName || "Unknown",
-        customerEmail: user.emailAddresses[0].emailAddress || "Unknown",
-        clerkUserId: user.id,
-        phone: codData.phone,
-        address: codData.address,
-        city: codData.city,
-        postalCode: codData.postalCode,
-        notes: codData.notes,
-      };
-
-      const result = await createCODOrder(groupedItems, metadata);
-      
-      if (result.success) {
-        router.push(`/success?orderNumber=${result.orderNumber}&paymentMethod=cod`);
-      }
-    } catch (error) {
-      console.error("Error creating COD order:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -190,12 +145,6 @@ const BasketPage: FC = () => {
               </p>
               <span>${totalPrice}</span>
             </div>
-            {paymentMethod === 'cod' && (
-              <div className="flex justify-between text-gray-600 text-sm">
-                <span>Cargo COD</span>
-                <span>${codFee.toFixed(2)}</span>
-              </div>
-            )}
             <p className="flex justify-between text-gray-600 text-sm">
               <span>Envío gratuito</span>
               <span>$0.00</span>
@@ -211,46 +160,21 @@ const BasketPage: FC = () => {
             <div>
               <p className="flex justify-between text-lg font-medium py-2">
                 <span>Total:</span>
-                <span className="font-semibold">${totalWithCOD}</span>
+                <span className="font-semibold">${totalPrice}</span>
               </p>
             </div>
             <Separator className="my-3" />
-            
-            {/* Payment Method Selection */}
-            <PaymentMethodSelector
-              selectedMethod={paymentMethod}
-              onMethodChange={setPaymentMethod}
-            />
-            
-            <Separator className="my-3" />
           </div>
-          
           {/* Checkout */}
           {isSignedIn ? (
-            <>
-              {!showCODForm ? (
-                <Button
-                  variant={"default"}
-                  onClick={handleCheckout}
-                  disabled={isLoading}
-                  className="mt-4 w-full"
-                >
-                  {isLoading ? "Procesando..." : 
-                   paymentMethod === 'cod' ? "Continuar con COD" : "Pagar con Tarjeta"}
-                </Button>
-              ) : (
-                <div className="mt-4">
-                  <CODForm onSubmit={handleCODSubmit} isLoading={isLoading} />
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowCODForm(false)}
-                    className="w-full mt-2"
-                  >
-                    Volver
-                  </Button>
-                </div>
-              )}
-            </>
+            <Button
+              variant={"default"}
+              onClick={handleCheckout}
+              disabled={isLoading}
+              className="mt-4 w-full"
+            >
+              {isLoading ? "Processing..." : "Checkout"}
+            </Button>
           ) : (
             <SignInButton mode="modal">
               <Button className="mt-4 py-5 w-full" variant="default">
